@@ -1,99 +1,202 @@
 ---
-import BlogCard from '@/components/BlogCard.astro'
-import Container from '@/components/Container.astro'
+import GithubCalendar from '@/components/bento/GithubCalendar'
+import MonkeytypeCalendar from '@/components/bento/MonkeytypeCalendar.tsx'
+import MusicPresence from '@/components/bento/MusicPresence.tsx'
+import WakatimeGraph from '@/components/bento/WakatimeGraph.tsx'
+import { DialogOverlay, DialogArea} from '@/components/bento/DialogOverlay'
 import Link from '@/components/Link.astro'
-import { buttonVariants } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { SITE } from '@/consts'
+import { SITE, SOCIAL_LINKS } from '@/consts'
 import Layout from '@/layouts/Layout.astro'
+import { Icon } from 'astro-icon/components'
+import { SiMonkeytype } from "react-icons/si"
+import { MdHeadphones } from "react-icons/md"
+import { BiSolidBellRing } from "react-icons/bi"
 import { getCollection } from 'astro:content'
 
-const blog = (await getCollection('blog'))
-  .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE)
+const latestPost = await getCollection('blog').then((posts) =>
+  posts
+    .sort(
+      (a, b) =>
+        new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+    )
+    .filter((post) => !post.data.hidden && !post.data.draft)
+    .at(0),
+);
+
+const introText = "Hi there! I'm Bao, an aspiring developer and undergraduate at Hanoi University of Science and Technology, Vietnam. I mostly go by Brandon Mai online.";
+const interestText = "I'm currently interested in data science and anything AI, especially computer vision and reinforcement learning.";
+const contentText = "Here lies my writeups on what I'm interested in, and sometimes stuffs I want to get off my chest :D";
+const musicText = "YouTube Music FTW";
+const blogText = "Check out my latest post!";
+const calendarText = "Time I spend practicing typing instead of contributing to repos :'>";
 ---
 
 <Layout title="Home" description={SITE.DESCRIPTION}>
-  <Container class="flex flex-col gap-y-6">
-    <section>
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-3xl">er·u·dite</CardTitle>
-          <CardDescription
-            >/ˈer(y)əˌdīt/ &bull; <span class="font-semibold">adjective</span
-            ></CardDescription
-          >
-        </CardHeader>
-        <CardContent>
-          <p class="mb-2 text-sm text-muted-foreground">
-            astro-erudite is an opinionated, no-frills static blogging template
-            built with <Link
-              href="https://astro.build"
-              class="text-foreground"
-              external
-              underline>Astro</Link
-            >, <Link
-              href="https://tailwindcss.com"
-              class="text-foreground"
-              external
-              underline>Tailwind</Link
-            >, and <Link
-              href="https://ui.shadcn.com"
-              class="text-foreground"
-              external
-              underline>shadcn/ui</Link
-            >. Extraordinarily loosely based on the <Link
-              href="https://astro-micro.vercel.app/"
-              class="text-foreground"
-              external
-              underline>Astro Micro</Link
-            > theme.
-          </p>
-          <p class="text-sm text-muted-foreground">
-            To use this template, check out the <Link
-              href="https://github.com/jktrn/astro-erudite"
-              class="text-foreground"
-              underline
-              external>GitHub</Link
-            > repository. To learn more about why this template exists, read this
-            blog post: <Link
-              href="/blog/the-state-of-static-blogs"
-              class="text-foreground"
-              underline>The State of Static Blogs in 2024</Link
-            >.
-          </p>
-        </CardContent>
-      </Card>
-    </section>
-    <section class="flex flex-col gap-y-4">
-      <h2 class="text-2xl font-bold">Latest posts</h2>
-      <ul class="not-prose flex flex-col gap-y-4">
-        {
-          blog.map((post) => (
-            <li>
-              <BlogCard entry={post} />
-            </li>
-          ))
-        }
-      </ul>
-      <div class="flex justify-center">
-        <Link
-          href="/blog"
-          class={buttonVariants({ variant: 'ghost' }) + ' group'}
+  <section
+    class="mx-auto grid max-w-[375px] grid-cols-2 gap-4 px-4
+    [grid-template-areas:'a_a'_'a_a'_'b_b'_'b_b'_'e_e'_'d_d'_'d_d'_'c_h'_'f_f'_'g_g'_'g_g']
+    *:rounded-3xl *:border *:bg-secondary/25 *:bg-no-repeat
+    sm:[grid-template-areas:'a_a'_'b_d'_'e_e'_'c_h'_'c_g'_'f_f']
+    sm:max-w-screen-sm
+    xl:[grid-template-areas:'a_a_b_c'_'d_e_e_c'_'g_f_f_h']
+    xl:max-w-screen-xl xl:grid-cols-4 
+    xl:[&:hover:has(>.has-overlay:hover)_.first_.overlay]:opacity-0
+    xl:[&:hover>*:not(.first):hover_.overlay]:opacity-100"
+    aria-label="Personal information and activity grid"
+  >
+    <div
+      class="first aspect-square [grid-area:a] relative
+      bg-[url('/static/bento/landscape-black.svg')]
+      dark:bg-[url('/static/bento/landscape-white.svg')]
+      bg-[1100px_auto] bg-[20%_0%] bg-no-repeat
+      sm:aspect-[2.1/1]"
+      role="article"
+      aria-label="Introduction"
+    >
+      <DialogOverlay client:load
+        content={introText}
+        className="overlay text-xs sm:text-sm tracking-wide w-5/6 sm:w-2/3 px-6 py-4 absolute top-4 right-4 z-[1] xl:opacity-100"
+      />
+      <DialogArea client:load
+        content={introText}
+        className="area text-xs sm:text-sm tracking-wide w-5/6 sm:w-2/3 px-6 py-4 absolute top-4 right-4 z-0"
+      />
+      <DialogOverlay client:load
+        content={interestText}
+        className="overlay text-xs sm:text-sm tracking-wide w-5/6 sm:w-2/3 px-6 py-4 absolute top-36 right-4 z-[1] xl:opacity-100"
+      />
+      <DialogArea client:load
+        content={interestText}
+        className="area text-xs sm:text-sm tracking-wide w-5/6 sm:w-2/3 px-6 py-4 absolute top-36 right-4 z-0"
+      />
+    </div>
+
+    <div
+      class="has-overlay aspect-square [grid-area:b] relative
+      bg-[url('/static/bento/landscape-black.svg')]
+      dark:bg-[url('/static/bento/landscape-white.svg')]
+      bg-[1100px_auto] bg-[90%_0%]"
+      role="article"
+      aria-label="Blog description"
+    >
+      <DialogOverlay client:load
+        content={contentText}
+        className="overlay text-xs tracking-wide w-4/5 p-4 absolute bottom-4 left-4 z-[1]"
+      />
+      <DialogArea client:load
+        content={contentText}
+        className="text-xs tracking-wide w-4/5 p-4 absolute bottom-4 left-4 z-0"
+      />
+    </div>
+
+    <div
+      class=" aspect-square sm:aspect-[1/2.1] [grid-area:c] xl:aspect-auto
+      bg-[url('/static/bento/mount-black.svg')]
+      dark:bg-[url('/static/bento/mount-white.svg')]
+      bg-[250px_auto] bg-[60%_10%] bg-no-repeat sm:bg-cover sm:bg-center"
+      aria-hidden="true"
+    >
+    </div>
+
+    <div class="has-overlay relative [grid-area:d] aspect-square">
+      <DialogOverlay client:load
+        content={musicText}
+        className="overlay text-[0.65rem] w-32 sm:w-28 px-3 py-2 absolute top-32 right-2 sm:top-24 z-[1]"
+      />
+      <DialogArea client:load
+        content={musicText}
+        className="area text-[0.65rem] w-32 sm:w-28 px-3 py-2 absolute top-32 right-2 sm:top-24 z-0"
+      />
+      <MdHeadphones
+        className="overlay absolute z-[2] top-[10.5rem] sm:top-[8.5rem] right-4 text-primary size-7 transition-opacity duration-200 opacity-0"
+        aria-hidden="true"
+      />
+      <MusicPresence client:load />
+    </div>
+
+    <div
+      class="has-overlay relative flex aspect-[6/5] items-start overflow-hidden p-4 [grid-area:e] sm:aspect-[2.1/1] sm:items-center"
+    >
+      <DialogOverlay client:load
+        content={blogText}
+        className="overlay text-[0.65rem] w-[6.5rem] px-3 pt-2 pb-3 absolute top-[12.5rem] right-40 sm:top-20 sm:right-2 z-[1]"
+      />
+      <DialogArea client:load
+        content={blogText}
+        className="area text-[0.65rem] w-[6.5rem] px-3 pt-2 pb-3 absolute top-[12.5rem] right-40 sm:top-20 sm:right-2 z-0"
+      />
+      <BiSolidBellRing
+        className="overlay absolute z-[2] top-[15.25rem] right-[8.75rem] sm:top-[7.85rem] sm:right-4 text-primary size-6 transition-opacity duration-200 opacity-0"
+        aria-hidden="true"
+      />
+      {
+        latestPost && (
+          <>
+            <img
+              src={latestPost.data.image?.src ?? '#'}
+              alt={`Featured image for the latest post: ${latestPost.data.title}`}
+              width={477}
+              height={251}
+              class="w-full rounded-2xl border border-border sm:ml-2 sm:w-[80%]"
+            />
+            <Link
+              href={`/blog/${latestPost.id}`}
+              aria-label={`Read latest blog post: ${latestPost.data.title}`}
+              title={`Read latest blog post: ${latestPost.data.title}`}
+            >
+              <div class="absolute bottom-0 right-0 m-3 flex w-fit items-end rounded-full border bg-secondary/50 p-3 text-primary transition-all duration-300 hover:rotate-12 hover:ring-1 hover:ring-primary">
+                <Icon name="lucide:move-up-right" size={16} />
+              </div>
+            </Link>
+          </>
+        )
+      }
+    </div>
+
+    <div
+      class="has-overlay relative flex aspect-square items-center justify-center overflow-hidden [grid-area:f] sm:aspect-[2.1/1]"
+    >
+      <DialogOverlay client:load
+        content={calendarText}
+        className="overlay text-[0.65rem] w-44 px-3 py-2 absolute bottom-8 left-3 z-[2]"
+      />
+      <DialogArea client:load
+        content={calendarText}
+        className="area text-[0.65rem] w-44 px-3 py-2 absolute bottom-8 left-3 z-[1]"
+      />
+      <SiMonkeytype
+        className="overlay absolute z-[2] bottom-5 left-44 text-primary size-8 transition-opacity duration-200 opacity-0"
+        aria-hidden="true"
+      />
+      <MonkeytypeCalendar client:load />
+    </div>
+
+    <div
+      class="aspect-square [grid-area:g]"
+    >
+      <WakatimeGraph omitLanguages={['Markdown', 'JSON', 'TSConfig', 'Other']} client:load />
+    </div>
+
+    <div
+      class="relative flex aspect-square items-center justify-center [grid-area:h]"
+    >
+      <Icon
+        name="mdi:github"
+        class="absolute z-[1] size-1/2 text-primary sm:size-24"
+        aria-hidden="true"
+      />
+      <Link
+        href={SOCIAL_LINKS.find((link) => link.label === 'GitHub')?.href || '#'}
+        title="Visit my GitHub profile"
+        aria-label="Visit my GitHub profile"
+      >
+        <div
+          class="absolute bottom-0 right-0 m-3 flex w-fit items-end rounded-full border bg-secondary/50 p-3 text-primary transition-all duration-300 hover:rotate-12 hover:ring-1 hover:ring-primary"
         >
-          See all posts <span
-            class="ml-1.5 transition-transform group-hover:translate-x-1"
-            >&rarr;</span
-          >
-        </Link>
-      </div>
-    </section>
-  </Container>
+          <Icon name="lucide:move-up-right" size={16} />
+        </div>
+      </Link>
+    </div>
+
+  </section>
 </Layout>

@@ -3,21 +3,26 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Geist';
-  src: url('/fonts/GeistVF.woff2') format('woff2');
-  font-weight: 100 900;
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrainsMono-wght.woff2') format('woff2-variations');
+  font-weight: 100 800;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Geist Mono';
-  src: url('/fonts/GeistMonoVF.woff2') format('woff2');
-  font-weight: 100 900;
-  font-style: normal;
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrainsMono-Italic-wght.woff2') format('woff2-variations');
+  font-weight: 100 800;
+  font-style: italic;
   font-display: swap;
 }
 
+/* Color scheme: HSL
+  - H: Hue (0-360) red -> green -> blue -> red
+  - S: Saturation (0-100%) washed gray -> color
+  - L: Lightness (0-100%) black -> color -> white
+*/
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -36,6 +41,14 @@
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 89.8%;
     --ring: 0 0% 3.9%;
+    --chart-0: 0 0% 90%;
+    --chart-1: 0 0% 32%;
+    --chart-2: 0 0% 40%;
+    --chart-3: 0 0% 48%;
+    --chart-4: 0 0% 56%;
+    --chart-5: 0 0% 64%;
+    --chart-6: 0 0% 72%;
+    --chart-7: 0 0% 80%;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -54,6 +67,14 @@
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
+    --chart-0: 0 0% 10%;
+    --chart-1: 0 0% 80%;
+    --chart-2: 0 0% 72%;
+    --chart-3: 0 0% 64%;
+    --chart-4: 0 0% 56%;
+    --chart-5: 0 0% 48%;
+    --chart-6: 0 0% 40%;
+    --chart-7: 0 0% 32%;
   }
 
   *,
