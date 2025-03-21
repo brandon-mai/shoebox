@@ -26,7 +26,7 @@ const latestPost = await getCollection('blog').then((posts) =>
 const introText = "Hi there! I'm Bao, an aspiring developer and undergraduate at Hanoi University of Science and Technology, Vietnam. I mostly go by Brandon Mai online.";
 const interestText = "I'm currently interested in data science and anything AI, especially computer vision and reinforcement learning.";
 const contentText = "Here lies my writeups on what I'm interested in, and sometimes stuffs I want to get off my chest :D";
-const musicText = "YouTube Music FTW";
+const musicText = "What I'm listening to";
 const blogText = "Check out my latest post!";
 const calendarText = "Time I spend practicing typing instead of contributing to repos :'>";
 ---
@@ -63,11 +63,11 @@ const calendarText = "Time I spend practicing typing instead of contributing to 
       />
       <DialogOverlay
         content={interestText}
-        className="overlay text-xs sm:text-sm tracking-wide w-5/6 sm:w-2/3 px-6 py-4 absolute top-36 right-4 z-[1] xl:opacity-100"
+        className="overlay text-xs sm:text-sm tracking-wide w-5/6 sm:w-2/3 px-6 py-4 absolute top-40 sm:top-36 right-4 z-[1] xl:opacity-100"
       />
       <DialogArea
         content={interestText}
-        className="area text-xs sm:text-sm tracking-wide w-5/6 sm:w-2/3 px-6 py-4 absolute top-36 right-4 z-0"
+        className="area text-xs sm:text-sm tracking-wide w-5/6 sm:w-2/3 px-6 py-4 absolute top-40 sm:top-36 right-4 z-0"
       />
     </div>
 
@@ -101,14 +101,14 @@ const calendarText = "Time I spend practicing typing instead of contributing to 
     <div class="has-overlay relative [grid-area:d] aspect-square">
       <DialogOverlay
         content={musicText}
-        className="overlay text-[0.65rem] w-32 sm:w-28 px-3 py-2 absolute top-32 right-2 sm:top-24 z-[1]"
+        className="overlay text-[0.65rem] w-32 sm:w-28 px-3 pt-2 pb-3 absolute top-32 right-2 sm:top-24 z-[1]"
       />
       <DialogArea
         content={musicText}
-        className="area text-[0.65rem] w-32 sm:w-28 px-3 py-2 absolute top-32 right-2 sm:top-24 z-0"
+        className="area text-[0.65rem] w-32 sm:w-28 px-3 pt-2 pb-3 absolute top-32 right-2 sm:top-24 z-0"
       />
       <MdHeadphones
-        className="overlay absolute z-[2] top-[10.5rem] sm:top-[8.5rem] right-4 text-primary size-7 transition-opacity duration-200 opacity-0"
+        className="overlay absolute z-[2] top-[10.5rem] sm:top-[8.75rem] right-4 text-primary size-7 transition-opacity duration-200 opacity-0"
         aria-hidden="true"
       />
       <MusicPresence client:load />
