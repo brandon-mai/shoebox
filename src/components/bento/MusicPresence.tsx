@@ -13,6 +13,14 @@ interface Track {
   '@attr'?: { nowplaying: string }
 }
 
+const getValidImageUrl = (images: { '#text': string }[]) => {
+  const imageUrl = images[3]['#text']
+  if (!imageUrl || imageUrl === '' || imageUrl.includes('2a96cbd8b46e442fc41c2b86b821562f')) {
+    return '/static/bento/album-placeholder.webp'
+  }
+  return imageUrl
+}
+
 const MusicPresence = () => {
   const [displayData, setDisplayData] = useState<Track | null>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -58,8 +66,8 @@ const MusicPresence = () => {
     <>
       <div className="relative flex h-full w-full flex-col justify-between p-6">
         <img
-          src={image[3]['#text']}
-          alt="Album art"
+          src={getValidImageUrl(image)}
+          alt={`Album art for ${song}`}
           width={128}
           height={128}
           className="mb-2 w-[55%] rounded-xl border border-border grayscale"
