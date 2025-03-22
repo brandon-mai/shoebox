@@ -1,6 +1,8 @@
+'use client'
+
 import { Button } from '@/components/ui/button'
 import { Laptop, Moon, Sun } from 'lucide-react'
-import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react'
+import { Menu, MenuButton, MenuItem, MenuItems, Radio, RadioGroup, Transition } from '@headlessui/react'
 import { Fragment, useState, useEffect } from 'react'
 
 function ModeToggleSimple() {
@@ -43,23 +45,15 @@ function ModeToggleSimple() {
 
 function ModeToggleV2() {
   const [theme, setThemeState] = useState<'theme-light' | 'dark' | 'system'>('system')
-  const [mounted, setMounted] = useState(false)
 
-  useEffect(() => setMounted(true), [])
-
-  // Initial theme detection to check system preference
   useEffect(() => {
-    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    const isDarkMode = document.documentElement.classList.contains('dark')
-    
-    if (isDarkMode || systemDark) {
-      setThemeState('system')
-    } else {
-      setThemeState('theme-light')
-    }
+    const isDarkMode =
+      theme === 'dark' ||
+      (theme === 'system' &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    setThemeState(isDarkMode ? 'dark' : 'theme-light')
   }, [])
 
-  // Update theme effect to handle system preference changes
   useEffect(() => {
     const isDark =
       theme === 'dark' ||
@@ -69,16 +63,6 @@ function ModeToggleV2() {
     document.documentElement.classList.add('disable-transitions')
     document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
     
-    if (theme === 'system') {
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-      const handleChange = (e: MediaQueryListEvent) => {
-        document.documentElement.classList[e.matches ? 'add' : 'remove']('dark')
-      }
-      
-      mediaQuery.addEventListener('change', handleChange)
-      return () => mediaQuery.removeEventListener('change', handleChange)
-    }
-
     requestAnimationFrame(() => {
       document.documentElement.classList.remove('disable-transitions')
     })
