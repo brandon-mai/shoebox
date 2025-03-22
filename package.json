@@ -20,6 +20,7 @@
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "^6.0.0",
     "@hbsnow/rehype-sectionize": "^1.0.7",
+    "@headlessui/react": "^2.2.0",
     "@iconify-json/lucide": "^1.2.20",
     "@iconify-json/mdi": "^1.2.3",
     "@radix-ui/react-avatar": "^1.1.2",
