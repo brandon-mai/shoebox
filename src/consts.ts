@@ -25,14 +25,14 @@ export const SITE: Site = {
 export const NAV_LINKS: Link[] = [
   { href: '/', label: 'home' },
   { href: '/blog', label: 'blog' },
-  // { href: '/authors', label: 'authors' },
-  { href: '/about', label: 'about' },
+  { href: '/authors', label: 'authors' },
   { href: '/tags', label: 'tags' },
+  { href: '/about', label: 'about' },
 ]
 
 export const SOCIAL_LINKS: Link[] = [
-  { href: 'https://github.com/jktrn', label: 'GitHub' },
-  { href: 'https://twitter.com/enscry', label: 'Twitter' },
-  { href: 'jason@enscribe.dev', label: 'Email' },
+  { href: 'https://github.com/brandon-mai', label: 'GitHub' },
+  { href: 'https://x.com/brndnmai', label: 'Twitter' },
+  { href: 'mvbao2022@pm.me', label: 'Email' },
   { href: '/rss.xml', label: 'RSS' },
 ]
