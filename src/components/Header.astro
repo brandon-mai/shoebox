@@ -16,13 +16,13 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md"
     <div class="flex flex-wrap items-center justify-between gap-4 py-4">
       <Link
         href="/"
-        class="flex flex-shrink-0 items-center gap-2 text-xl font-semibold transition-colors duration-300 hover:text-primary"
+        class="hover:text-primary flex shrink-0 items-center gap-2 text-xl font-medium transition-colors duration-300"
       >
         <!-- <Image src={logo} alt="Logo" class="size-8" /> -->
         <MdOutlineKeyboardArrowRight className='size-7' />
         <span class="relative">
           {SITE.TITLE}
-          <span class="absolute right-0 top-0 inline-block w-[0.6em] h-full bg-foreground animate-blink" />
+          <span class="absolute right-0 top-0 inline-block w-[0.65rem] h-full bg-foreground animate-blink" />
           <span class="absolute right-0 top-0 text-background animate-blink">{SITE.TITLE.slice(-1)}</span>
         </span>
       </Link>
