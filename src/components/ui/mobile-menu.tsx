@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useEffect, Fragment } from 'react'
 import { Button } from '@/components/ui/button'
 import { NAV_LINKS } from '@/consts'
@@ -5,13 +7,6 @@ import { Menu as MenuIcon } from 'lucide-react'
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react'
 
 const MobileMenuV2 = () => {
-  const [mounted, setMounted] = useState(false)
-
-  // Mount check to prevent hydration issues
-  useEffect(() => setMounted(true), [])
-
-  // if (!mounted) return null
-
   return (
     <Menu as="div" className="relative inline-block text-left md:hidden">
       <MenuButton
