@@ -18,7 +18,7 @@ const getValidImageUrl = (images: { '#text': string }[]) => {
   if (!imageUrl || imageUrl === '' || imageUrl.includes('2a96cbd8b46e442fc41c2b86b821562f')) {
     return '/static/bento/album-placeholder.webp'
   }
-  return imageUrl
+  return imageUrl.replace('.jpg', '.webp')
 }
 
 const MusicPresence = () => {
