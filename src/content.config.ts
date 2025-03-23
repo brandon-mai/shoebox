@@ -72,7 +72,7 @@ const projects = defineCollection({
       name: z.string(),
       description: z.string(),
       tags: z.array(z.string()),
-      image: image(),
+      image: image().default('../../../public/static/1200x630.webp'),
       link: z.string().url(),
     }),
 })

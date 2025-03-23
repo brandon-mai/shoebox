@@ -2,10 +2,10 @@
 
 @layer components {
   .prose {
-    @apply text-foreground text-base leading-8 [&>section:first-child>*]:mt-0 [&>section:last-child>*]:mb-0;
+    @apply text-foreground text-sm leading-8 [&>section:first-child>*]:mt-0 [&>section:last-child>*]:mb-0;
 
     p {
-      @apply text-foreground/80 my-5 leading-7 not-first:mt-5 text-sm;
+      @apply text-foreground/80 my-5 leading-7 not-first:mt-5;
     }
 
     h1 {
