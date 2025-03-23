@@ -37,7 +37,7 @@ const authors = await parseAuthors(entry.data.authors ?? [])
             alt={entry.data.title}
             width={1200}
             height={630}
-            class="object-cover"
+            class="object-cover grayscale"
           />
         </div>
       )
@@ -62,7 +62,7 @@ const authors = await parseAuthors(entry.data.authors ?? [])
                     src={author.avatar}
                     alt={author.name}
                     fallback={author.name[0]}
-                    className="size-5 rounded-full"
+                    className="size-5 rounded-full grayscale"
                   />
                   <span>{author.name}</span>
                 </div>
