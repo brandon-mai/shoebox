@@ -15,6 +15,7 @@ import remarkEmoji from 'remark-emoji'
 import remarkMath from 'remark-math'
 import remarkSectionize from 'remark-sectionize'
 import remarkToc from 'remark-toc'
+import remarkGithubAlerts from 'remark-github-alerts'
 
 import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections'
 import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
@@ -22,7 +23,7 @@ import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  site: 'https://astro-erudite.vercel.app',
+  site: 'https://brandonmai.vercel.app',
   integrations: [
     expressiveCode({
       themes: ['github-light', 'github-dark'],
@@ -103,6 +104,6 @@ export default defineConfig({
         },
       ],
     ],
-    remarkPlugins: [remarkToc, remarkMath, remarkEmoji, remarkSectionize],
+    remarkPlugins: [remarkToc, remarkMath, remarkEmoji, remarkSectionize, remarkGithubAlerts],
   },
 })
