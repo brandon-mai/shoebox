@@ -159,7 +159,7 @@
 }
 
 @theme {
-  --animate-blink: blink 1s step-end infinite;
+  --animate-blink: blink 1.25s step-end infinite;
   @keyframes blink {
     0%,
     100% {
