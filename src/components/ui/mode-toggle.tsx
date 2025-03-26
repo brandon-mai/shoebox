@@ -68,8 +68,6 @@ function ModeToggleV2() {
     })
   }, [theme])
 
-  // if (!mounted) return null
-
   return (
     <Menu as="div" className="relative inline-block text-left">
       <MenuButton

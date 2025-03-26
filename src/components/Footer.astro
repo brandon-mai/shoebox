@@ -1,5 +1,4 @@
 ---
-import Container from '@/components/Container.astro'
 import { Separator } from '@/components/ui/separator'
 import { SOCIAL_LINKS } from '@/consts'
 import Link from './Link.astro'
@@ -7,16 +6,14 @@ import SocialIcons from './SocialIcons.astro'
 ---
 
 <footer class="py-4">
-  <Container>
-    <div
-      class="flex flex-col items-center justify-center gap-y-2 sm:flex-row sm:justify-between"
-    >
-      <div class="flex items-center gap-x-2">
-        <span class="text-muted-foreground text-center text-sm">
-          &copy; {new Date().getFullYear()} Brandon Mai
-        </span>
-      </div>
-      <SocialIcons links={SOCIAL_LINKS} />
+  <div
+    class="mx-auto flex max-w-3xl flex-col items-center justify-center gap-y-2 px-4 sm:flex-row sm:justify-between"
+  >
+    <div class="flex flex-wrap items-center justify-center gap-x-2 text-center">
+      <span class="text-muted-foreground text-sm">
+        &copy; {new Date().getFullYear()} Brandon Mai
+      </span>
     </div>
-  </Container>
+    <SocialIcons links={SOCIAL_LINKS} />
+  </div>
 </footer>

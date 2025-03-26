@@ -5,8 +5,9 @@ import MusicPresence from '@/components/bento/MusicPresence.tsx'
 import WakatimeGraph from '@/components/bento/WakatimeGraph.tsx'
 import { DialogOverlay, DialogArea} from '@/components/bento/DialogOverlay'
 import Link from '@/components/Link.astro'
+import PageHead from '@/components/PageHead.astro'
 import { SITE, SOCIAL_LINKS } from '@/consts'
-import Layout from '@/layouts/Layout.astro'
+import Layout from '@/layouts/BentoLayout.astro'
 import { Icon } from 'astro-icon/components'
 import { SiMonkeytype } from "react-icons/si"
 import { MdHeadphones } from "react-icons/md"
@@ -19,19 +20,20 @@ const latestPost = await getCollection('blog').then((posts) =>
       (a, b) =>
         new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
     )
-    .filter((post) => !post.data.hidden && !post.data.draft)
+    .filter((post) => !post.data.draft)
     .at(0),
 );
 
 const introText = "Hi there! I'm Viet Bao Mai, an aspiring developer-researcher and currently an undergraduate at HUST, Vietnam. I mostly go by the name Brandon Mai online.";
-const interestText = "I'm interested in consumer electronics, data science, and everything AI!";
+const interestText = "I'm interested in all things tech, data science, and everything AI!";
 const contentText = "Here lies my writeups on what I'm interested in, and sometimes stuffs I want to get off my chest :D";
 const musicText = "What I'm listening to";
 const blogText = "Check out my latest post!";
 const calendarText = "Time I spend practicing typing instead of contributing to repos :'>";
 ---
 
-<Layout title="Home" description={SITE.DESCRIPTION}>
+<Layout>
+  <PageHead slot="head" title="Home" />
   <section
     class="mx-auto grid max-w-[375px] grid-cols-2 gap-4 px-4
     [grid-template-areas:'a_a'_'a_a'_'b_b'_'b_b'_'e_e'_'d_d'_'d_d'_'c_h'_'f_f'_'g_g'_'g_g']
@@ -46,9 +48,10 @@ const calendarText = "Time I spend practicing typing instead of contributing to 
   >
     <div
       class="first aspect-square [grid-area:a] relative
-      bg-[url('/static/bento/hill.webp')]
-      dark:bg-[url('/static/bento/hill-dark.webp')]
-      bg-cover sm:bg-[0%_60%]
+      bg-[url('/static/bento/landscape-light.svg')]
+      dark:bg-[url('/static/bento/landscape-dark.svg')]
+      bg-[1250px_auto] bg-[30%_0%]
+      sm:bg-[1050px_auto] sm:bg-[55%_0%]
       sm:aspect-[2.1/1]"
       role="article"
       aria-label="Introduction"
@@ -73,9 +76,9 @@ const calendarText = "Time I spend practicing typing instead of contributing to 
 
     <div
       class="has-overlay aspect-square [grid-area:b] relative
-      bg-[url('/static/bento/emoji.webp')]
-      dark:bg-[url('/static/bento/emoji-dark.webp')]
-      bg-[930px_auto] bg-center"
+      bg-[url('/static/bento/mount-light.svg')]
+      dark:bg-[url('/static/bento/mount-dark.svg')]
+      bg-[450px_auto] bg-[65%_20%]"
       role="article"
       aria-label="Blog description"
     >
@@ -91,9 +94,9 @@ const calendarText = "Time I spend practicing typing instead of contributing to 
 
     <div
       class=" aspect-square sm:aspect-[1/2.1] [grid-area:c] xl:aspect-auto
-      bg-[url('/static/bento/mount-black.svg')]
-      dark:bg-[url('/static/bento/mount-white.svg')]
-      bg-[250px_auto] bg-[60%_10%] bg-no-repeat sm:bg-cover sm:bg-center"
+      bg-[url('/static/bento/fishscale.webp')]
+      dark:bg-[url('/static/bento/fishscale-dark.webp')]
+      sm:bg-cover bg-[675px_auto] bg-right"
       aria-hidden="true"
     >
     </div>
