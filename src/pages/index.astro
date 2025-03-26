@@ -12,17 +12,9 @@ import { Icon } from 'astro-icon/components'
 import { SiMonkeytype } from "react-icons/si"
 import { MdHeadphones } from "react-icons/md"
 import { BiSolidBellRing } from "react-icons/bi"
-import { getCollection } from 'astro:content'
+import { getRecentPosts } from '@/lib/data-utils'
 
-const latestPost = await getCollection('blog').then((posts) =>
-  posts
-    .sort(
-      (a, b) =>
-        new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
-    )
-    .filter((post) => !post.data.draft)
-    .at(0),
-);
+const latestPost = await getRecentPosts(SITE.featuredPostCount).then((posts) => posts[0])
 
 const introText = "Hi there! I'm Viet Bao Mai, an aspiring developer-researcher and currently an undergraduate at HUST, Vietnam. I mostly go by the name Brandon Mai online.";
 const interestText = "I'm interested in all things tech, data science, and everything AI!";

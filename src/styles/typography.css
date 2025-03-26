@@ -9,7 +9,7 @@
     }
 
     h1 {
-      @apply text-foreground mt-0 mb-6 scroll-m-20 text-4xl leading-tight font-medium;
+      @apply text-foreground mt-0 mb-6 scroll-m-20 text-3xl leading-tight font-medium;
     }
 
     h2 {
