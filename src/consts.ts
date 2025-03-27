@@ -5,7 +5,7 @@ export const SITE: Site = {
   locale: 'en-US',
   description:
     'Discoveries and escapades of a curious mind on everything tech, data science, and AI.',
-  href: 'https://brandonmai.vercel.app',
+  href: 'https://vietbaomai.com',
   featuredPostCount: 2,
   postsPerPage: 3,
 }
@@ -43,7 +43,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
     label: 'Twitter',
   },
   {
-    href: 'mvbao2022@pm.me',
+    href: 'me@vietbaomai.com',
     label: 'Email',
   },
   {

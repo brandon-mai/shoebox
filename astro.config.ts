@@ -23,7 +23,7 @@ import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  site: 'https://brandonmai.vercel.app',
+  site: 'https://vietbaomai.com',
   integrations: [
     expressiveCode({
       themes: ['github-light', 'github-dark'],
