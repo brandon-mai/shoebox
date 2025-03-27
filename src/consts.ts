@@ -43,7 +43,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
     label: 'Twitter',
   },
   {
-    href: 'me@vietbaomai.com',
+    href: 'mailto:me@vietbaomai.com',
     label: 'Email',
   },
   {
