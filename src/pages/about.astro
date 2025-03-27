@@ -15,41 +15,52 @@ const projects = await getAllProjects()
 
   <section>
     <div class="min-w-full">
+      <div class="rounded-lg border">
+        <div class="flex flex-col space-y-1.5 p-6">
+          <h3 class="text-3xl leading-none font-medium">shoe·box</h3>
+          <p class="text-muted-foreground text-sm">
+            /ˈʃuːˌbɒks/ &bull; <span class="font-medium">noun</span>
+          </p>
+        </div>
+        <ul class="p-6 pt-0">
+          <li class="text-muted-foreground mb-2 text-sm">
+            <strong class="text-foreground">1 : </strong>
+            a box in which a pair of shoes is delivered or sold
+          </li>
+          <li class="text-muted-foreground text-sm">
+            <strong class="text-foreground">2 : </strong>
+            a small but comfy living and creative space of a
+            <Link
+              href="https://virtualyoutuber.fandom.com/wiki/Gigi_Murin#Mascots_and_Fans"
+              class="text-foreground"
+              underline
+              external
+            >Grem</Link> (the author)
+          </li>
+        </ul>
+      </div>
+
       <div class="prose mb-8">
         <p class="mb-4">
-          astro-erudite is an opinionated, unstyled static blogging template
-          that prioritizes simplicity and performance, built with <Link
-            href="https://astro.build"
-            class="text-foreground"
-            external
-            underline>Astro</Link
-          >, <Link
-            href="https://tailwindcss.com"
-            class="text-foreground"
-            external
-            underline>Tailwind</Link
-          >, and <Link
-            href="https://ui.shadcn.com"
-            class="text-foreground"
-            external
-            underline>shadcn/ui</Link
-          >. It provides a clean foundation for your content while being
-          extremely easy to customize.
+          <strong>Bao's Shoebox</strong> is a little corner where a guy named
+          Bao shares his interests and thoughts with the world (or at least
+          to the people who might find values in them).
         </p>
         <p>
-          To learn more about the philosophy behind this template, check out the
-          following blog post: <Link
-            href="/blog/the-state-of-static-blogs"
-            class="text-foreground"
-            underline>The State of Static Blogs in 2024</Link
-          >.
+          The blog is based on the template
+          <Link
+            href='https://astro-erudite.vercel.app/'
+            class='text-foreground'
+            underline
+            external
+          >astro-erudite</Link>.
         </p>
       </div>
 
-      <h2 class="mb-4 text-2xl font-medium">Example Projects Listing</h2>
+      <!-- <h2 class="mb-4 text-2xl font-medium">Example Projects Listing</h2>
       <div class="flex flex-col gap-4">
         {projects.map((project) => <ProjectCard project={project} />)}
-      </div>
+      </div> -->
     </div>
   </section>
 </Layout>
