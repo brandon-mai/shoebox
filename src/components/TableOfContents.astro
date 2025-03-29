@@ -10,9 +10,14 @@ type Props = {
 
 const { headings } = Astro.props
 
-function getHeadingMargin(depth: number) {
-  if (depth < 3) return ''
-  return `ml-${(depth - 2) * 4}`
+function getHeadingMargin(depth: number): string {
+  const margins: Record<number, string> = {
+    3: 'ml-4',
+    4: 'ml-8',
+    5: 'ml-12',
+    6: 'ml-16',
+  }
+  return margins[depth] || ''
 }
 ---
 
@@ -35,7 +40,10 @@ function getHeadingMargin(depth: number) {
     className="flex max-h-64 flex-col overflow-y-auto xl:max-h-[calc(100vh-8rem)]"
     type="always"
   >
-    <ul class="flex list-none flex-col gap-y-2 px-4 xl:mr-8">
+    <ul
+      class="flex list-none flex-col gap-y-2 px-4 xl:mr-8"
+      id="table-of-contents"
+    >
       <li class="hidden text-lg font-medium xl:block">Table of Contents</li>
       {
         headings.map((heading) => (
