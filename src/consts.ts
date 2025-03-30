@@ -2,10 +2,11 @@ import type { IconMap, SocialLink, Site } from '@/types'
 
 export const SITE: Site = {
   title: "Bao's Shoebox",
-  locale: 'en-US',
   description:
     'Discoveries and escapades of a curious mind on everything tech, data science, and AI.',
   href: 'https://vietbaomai.com',
+  author: 'brandonmai',
+  locale: 'en-US',
   featuredPostCount: 2,
   postsPerPage: 3,
 }
