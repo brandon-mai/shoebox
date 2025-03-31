@@ -5,6 +5,64 @@ import { Button } from '@/components/ui/button'
 import { NAV_LINKS } from '@/consts'
 import { Menu as MenuIcon } from 'lucide-react'
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+
+const MobileMenu = () => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    const handleViewTransitionStart = () => {
+      setIsOpen(false)
+    }
+
+    document.addEventListener('astro:before-swap', handleViewTransitionStart)
+
+    return () => {
+      document.removeEventListener(
+        'astro:before-swap',
+        handleViewTransitionStart,
+      )
+    }
+  }, [])
+
+  return (
+    <DropdownMenu open={isOpen} onOpenChange={(val) => setIsOpen(val)}>
+      <DropdownMenuTrigger asChild
+        onClick={() => {
+          setIsOpen((val) => !val);
+        }}
+      >
+        <Button
+          variant="outline"
+          size="icon"
+          className="md:hidden"
+          title="Menu"
+        >
+          <MenuIcon className="h-5 w-5" />
+          <span className="sr-only">Toggle menu</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="bg-background">
+        {NAV_LINKS.map((item) => (
+          <DropdownMenuItem key={item.href} asChild>
+            <a
+              href={item.href}
+              className="w-full text-lg font-medium capitalize"
+              onClick={() => setIsOpen(false)}
+            >
+              {item.label}
+            </a>
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}
 
 const MobileMenuV2 = () => {
   return (
@@ -52,4 +110,4 @@ const MobileMenuV2 = () => {
   )
 }
 
-export { MobileMenuV2 }
+export { MobileMenuV2, MobileMenu }

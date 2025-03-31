@@ -1,7 +1,7 @@
 ---
 import Link from '@/components/Link.astro'
 import ThemeToggle from '@/components/ThemeToggle.astro'
-import { MobileMenuV2 } from '@/components/ui/mobile-menu'
+import { MobileMenuV2, MobileMenu } from '@/components/ui/mobile-menu'
 import { NAV_LINKS, SITE } from '@/consts'
 import { Image } from 'astro:assets'
 import { MdOutlineKeyboardArrowRight } from "react-icons/md"
@@ -33,7 +33,7 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md"
           ))
         }
       </nav>
-      <MobileMenuV2 client:load transition:persist />
+      <MobileMenu client:load transition:persist />
       <ThemeToggle transition:persist />
     </div>
   </div>
