@@ -41,7 +41,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     href: 'https://x.com/brndnmai',
-    label: 'Twitter',
+    label: 'Kaggle',
   },
   {
     href: 'mailto:me@vietbaomai.com',
@@ -60,4 +60,5 @@ export const ICON_MAP: IconMap = {
   Twitter: 'lucide:twitter',
   Email: 'lucide:mail',
   RSS: 'lucide:rss',
+  Kaggle: 'fa6-brands:kaggle',
 }

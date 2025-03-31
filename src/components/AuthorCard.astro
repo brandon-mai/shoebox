@@ -18,6 +18,7 @@ const isAuthorPage = currentPath === `/authors/${author.id}`
 const socialLinks: SocialLink[] = [
   author.data.website && { href: author.data.website, label: 'Website' },
   author.data.github && { href: author.data.github, label: 'GitHub' },
+  author.data.kaggle && { href: author.data.kaggle, label: 'Kaggle' },
   author.data.twitter && { href: author.data.twitter, label: 'Twitter' },
   author.data.linkedin && { href: author.data.linkedin, label: 'LinkedIn' },
   author.data.mail && { href: `mailto:${author.data.mail}`, label: 'Email' },
