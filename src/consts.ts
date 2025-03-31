@@ -40,7 +40,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
     label: 'GitHub',
   },
   {
-    href: 'https://x.com/brndnmai',
+    href: 'https://www.kaggle.com/brandonmai',
     label: 'Kaggle',
   },
   {
