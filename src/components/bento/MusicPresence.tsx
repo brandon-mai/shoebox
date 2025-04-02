@@ -74,9 +74,9 @@ const MusicPresence = () => {
         />
         <div className="flex min-w-0 flex-1 flex-col justify-end overflow-hidden">
           <div className="flex flex-col">
-            <span className="mb-2 flex gap-2">
+            <span className="mb-2 flex gap-2 text-primary">
               <PiWaveformBold size={22} />
-              <span className="text-sm text-primary">
+              <span className="text-sm">
                 {displayData['@attr']?.nowplaying === 'true'
                   ? 'Now playing...'
                   : 'Last played...'}

@@ -29,7 +29,7 @@ const calendarText = "Time I spend practicing typing instead of contributing to 
   <section
     class="mx-auto grid max-w-[375px] grid-cols-2 gap-4 px-4
     [grid-template-areas:'a_a'_'a_a'_'b_b'_'b_b'_'e_e'_'d_d'_'d_d'_'c_h'_'f_f'_'g_g'_'g_g']
-    *:rounded-3xl *:border *:bg-secondary/25 *:bg-no-repeat
+    *:rounded-3xl *:border *:bg-secondary/50 *:bg-no-repeat
     sm:[grid-template-areas:'a_a'_'b_d'_'e_e'_'c_h'_'c_g'_'f_f']
     sm:max-w-screen-sm
     xl:[grid-template-areas:'a_a_b_c'_'d_e_e_c'_'g_f_f_h']
@@ -43,7 +43,7 @@ const calendarText = "Time I spend practicing typing instead of contributing to 
       bg-[url('/static/bento/landscape-light-v5.svg')]
       dark:bg-[url('/static/bento/landscape-dark-v5.svg')]
       bg-cover bg-left sm:bg-center
-      sm:aspect-[2.1/1]"
+      sm:aspect-[2.1/1] xl:aspect-auto"
       role="article"
       aria-label="Introduction"
     >
@@ -84,7 +84,7 @@ const calendarText = "Time I spend practicing typing instead of contributing to 
     </div>
 
     <div
-      class=" aspect-square sm:aspect-[1/2.1] [grid-area:c] xl:aspect-auto
+      class="aspect-square sm:aspect-auto [grid-area:c]
       bg-[url('/static/bento/fishscale.webp')]
       dark:bg-[url('/static/bento/fishscale-dark.webp')]
       sm:bg-cover bg-[675px_auto] bg-center"
@@ -109,7 +109,7 @@ const calendarText = "Time I spend practicing typing instead of contributing to 
     </div>
 
     <div
-      class="has-overlay relative flex aspect-[6/5] items-start overflow-hidden p-4 [grid-area:e] sm:aspect-[2.1/1] sm:items-center"
+      class="has-overlay relative flex aspect-[6/5] items-start overflow-hidden p-4 [grid-area:e] sm:aspect-[2.1/1] sm:items-center xl:aspect-auto"
     >
       <DialogOverlay
         content={blogText}
@@ -148,7 +148,7 @@ const calendarText = "Time I spend practicing typing instead of contributing to 
     </div>
 
     <div
-      class="has-overlay relative flex aspect-square items-center justify-center overflow-hidden [grid-area:f] sm:aspect-[2.1/1]"
+      class="has-overlay relative flex aspect-square items-center justify-center overflow-hidden [grid-area:f] sm:aspect-[2.1/1] xl:aspect-auto"
     >
       <DialogOverlay
         content={calendarText}

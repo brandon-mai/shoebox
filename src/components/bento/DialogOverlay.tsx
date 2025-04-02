@@ -13,7 +13,7 @@ const DialogOverlay: FunctionComponent<Props> = ({
     <div className={`
     rounded-2xl transition-opacity duration-200
     bg-background/90 backdrop-blur-sm shadow-md border-2 border-border
-    text-foreground font-extralight
+    text-foreground font-light
     xl:opacity-0
     ${className}
     `}
@@ -31,7 +31,7 @@ const DialogArea: FunctionComponent<Props> = ({
     <div className={`
     rounded-2xl transition-opacity duration-200
     bg-transparent border-2 border-muted-foreground border-dashed
-    text-transparent font-extralight
+    text-transparent font-light
     opacity-0 xl:opacity-100
     ${className}
     `}
