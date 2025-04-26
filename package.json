@@ -15,10 +15,10 @@
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/markdown-remark": "^6.3.1",
-    "@astrojs/mdx": "^4.2.1",
-    "@astrojs/react": "^4.2.1",
+    "@astrojs/mdx": "^4.2.5",
+    "@astrojs/react": "^4.2.5",
     "@astrojs/rss": "^4.0.11",
-    "@astrojs/sitemap": "^3.3.0",
+    "@astrojs/sitemap": "^3.3.1",
     "@expressive-code/plugin-collapsible-sections": "^0.40.2",
     "@expressive-code/plugin-line-numbers": "^0.40.2",
     "@headlessui/react": "^2.2.0",
@@ -35,7 +35,7 @@
     "@tailwindcss/vite": "^4.0.7",
     "@types/react": "19.0.0",
     "@types/react-dom": "19.0.0",
-    "astro": "^5.5.4",
+    "astro": "^5.7.5",
     "astro-expressive-code": "^0.40.2",
     "astro-icon": "^1.1.5",
     "bootstrap-icons": "^1.11.3",
@@ -84,5 +84,6 @@
         }
       }
     ]
-  }
+  },
+  "packageManager": "pnpm@10.8.0+sha512.0e82714d1b5b43c74610193cb20734897c1d00de89d0e18420aebc5977fa13d780a9cb05734624e81ebd81cc876cd464794850641c48b9544326b5622ca29971"
 }

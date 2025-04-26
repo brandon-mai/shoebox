@@ -27,7 +27,7 @@ const getThemeColors = () => [
 ]
 
 async function fetchCalendarData(): Promise<MonkeyTypeActivity[]> {
-  const response = await fetch('/monkeytype.json')
+  const response = await fetch('/api/monkeytype.json')
   const data: ApiResponse = await response.json()
 
   if (!response.ok) {
