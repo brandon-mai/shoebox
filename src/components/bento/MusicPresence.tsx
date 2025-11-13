@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { SiYoutubemusic } from "react-icons/si"
+import { SiSpotify, SiYoutubemusic } from "react-icons/si"
 import { PiWaveformBold } from "react-icons/pi";
 import { Skeleton } from '@/components/ui/skeleton'
 import { MoveUpRight } from 'lucide-react'
@@ -51,7 +51,7 @@ const MusicPresence = () => {
           </div>
         </div>
         <div className="absolute right-0 top-0 m-3 text-primary">
-          <SiYoutubemusic size={56} />
+          <SiSpotify size={56} />
         </div>
         <Skeleton className="absolute bottom-0 right-0 m-3 h-10 w-10 rounded-full" />
       </div>
@@ -70,7 +70,7 @@ const MusicPresence = () => {
           alt={`Album art for ${song}`}
           width={128}
           height={128}
-          className="mb-2 w-[55%] rounded-xl border border-border grayscale"
+          className="mb-2 w-[55%] rounded-xl border border-border"
         />
         <div className="flex min-w-0 flex-1 flex-col justify-end overflow-hidden">
           <div className="flex flex-col">
@@ -101,7 +101,7 @@ const MusicPresence = () => {
         </div>
       </div>
       <div className="absolute right-0 top-0 m-3 text-primary">
-        <SiYoutubemusic size={56} />
+        <SiSpotify size={56} />
       </div>
       <a
         href={url}
