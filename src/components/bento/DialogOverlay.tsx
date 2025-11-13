@@ -31,7 +31,7 @@ const DialogArea: FunctionComponent<Props> = ({
     <div className={`
     rounded-2xl transition-opacity duration-200
     bg-transparent border-2 border-muted-foreground border-dashed
-    text-transparent font-light
+    text-transparent select-none font-light
     opacity-0 xl:opacity-100
     ${className}
     `}

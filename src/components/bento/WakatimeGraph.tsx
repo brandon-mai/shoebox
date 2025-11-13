@@ -22,15 +22,13 @@ interface Props {
 }
 
 const colors = [
-  'var(--chart-1)',
   'var(--chart-2)',
+  'var(--chart-1)',
+  'var(--chart-1)',
+  'var(--chart-1)',
   'var(--chart-3)',
-  'var(--chart-4)',
-  'var(--chart-5)',
-  'var(--chart-6)',
-  'var(--chart-7)',
-  'var(--chart-0)', // icon background
-  'var(--primary)', // icon color
+  'var(--chart-3)',
+  'var(--chart-3)',
 ]
 
 const chartConfig: ChartConfig = {
@@ -57,7 +55,6 @@ const WakatimeGraph = ({ omitLanguages = [] }: Props) => {
 
   useEffect(() => {
     fetch(
-      // 'https://wakatime.com/share/@jktrn/ef6e633b-589d-44f2-9ae6-0eb93445cf2a.json',
       'https://wakatime.com/share/@brandonmai/5af2b357-3450-4302-ae7e-4ecc60825dd6.json'
     )
       .then((response) => {
@@ -89,21 +86,14 @@ const WakatimeGraph = ({ omitLanguages = [] }: Props) => {
     return (
       <g transform={`translate(${x},${y})`}>
         <title>{payload.value}</title>
-        <circle cx="-18" cy="0" r="14" fill={`${colors[7]}`} />
+        <circle cx="-18" cy="0" r="14" fill="var(--background)" />
         <foreignObject width={16} height={16} x={-26} y={-8}>
           {icon ? (
-            React.cloneElement(icon, { size: 16, color: colors[8] })
+            React.cloneElement(icon, { size: 16, className: 'text-foreground', })
           ) : (
-            <text
-              x={8}
-              y={12}
-              fill="#E9D3B6"
-              fontSize="12"
-              textAnchor="middle"
-              dominantBaseline="central"
-            >
+            <span className="text-foreground text-sm font-medium select-none">
               {payload.value.charAt(0).toUpperCase()}
-            </text>
+            </span>
           )}
         </foreignObject>
       </g>
@@ -136,7 +126,7 @@ const WakatimeGraph = ({ omitLanguages = [] }: Props) => {
         accessibilityLayer
         data={languages}
         layout="vertical"
-        margin={{ left: -10, right: 10 }}
+        margin={{ left: -10, right: 30 }}
       >
         <CartesianGrid horizontal={false} />
         <YAxis

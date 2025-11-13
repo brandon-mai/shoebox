@@ -1,6 +1,6 @@
 ---
 import GithubCalendar from '@/components/bento/GithubCalendar'
-import MonkeytypeCalendar from '@/components/bento/MonkeytypeCalendar.tsx'
+import WakatimeCalendar from '@/components/bento/WakatimeCalendar'
 import MusicPresence from '@/components/bento/MusicPresence.tsx'
 import WakatimeGraph from '@/components/bento/WakatimeGraph.tsx'
 import { DialogOverlay, DialogArea} from '@/components/bento/DialogOverlay'
@@ -8,20 +8,31 @@ import Link from '@/components/Link.astro'
 import PageHead from '@/components/PageHead.astro'
 import { SITE, SOCIAL_LINKS } from '@/consts'
 import Layout from '@/layouts/BentoLayout.astro'
+import { getRecentPosts } from '@/lib/data-utils'
+
 import { Icon } from 'astro-icon/components'
-import { SiMonkeytype } from "react-icons/si"
 import { MdHeadphones } from "react-icons/md"
 import { BiSolidBellRing } from "react-icons/bi"
-import { getRecentPosts } from '@/lib/data-utils'
+import { FaLaptopCode } from "react-icons/fa"
+import { SimplexNoise } from '@paper-design/shaders-react'
+import { Topography } from '@/components/bento/Topography'
 
 const latestPost = await getRecentPosts(SITE.featuredPostCount).then((posts) => posts[0])
 
-const introText = "Hi there! I'm Viet Bao Mai, an aspiring developer-researcher and currently an undergraduate at HUST, Vietnam. I mostly go by the name Brandon Mai online.";
-const interestText = "I'm interested in all things tech, data science, and everything AI!";
+const getThemeColors = () => [
+  'var(--card-hex)',
+  'var(--background-hex)',
+  'var(--secondary-hex)',
+  'var(--border-hex)',
+  '#f5f5f5'
+]
+
+const introText = "Hi there! I'm Viet Bao Mai, an aspiring developer—researcher and currently an undergraduate at HUST, Vietnam. I mostly go by the name Brandon Mai online.";
+const interestText = "I'm interested in tech and AI, especially niche/lesser-known stuffs!";
 const contentText = "Here lies my writeups on what I'm interested in, and sometimes stuffs I want to get off my chest :D";
 const musicText = "What I'm listening to";
 const blogText = "Check out my latest post!";
-const calendarText = "Time I spend practicing typing instead of contributing to repos :'>";
+const calendarText = "Time I spend staring at the code editor screen";
 ---
 
 <Layout>
@@ -29,7 +40,7 @@ const calendarText = "Time I spend practicing typing instead of contributing to 
   <section
     class="mx-auto grid max-w-[375px] grid-cols-2 gap-4 px-4
     [grid-template-areas:'a_a'_'a_a'_'b_b'_'b_b'_'e_e'_'d_d'_'d_d'_'c_h'_'f_f'_'g_g'_'g_g']
-    *:rounded-3xl *:border *:bg-secondary/35 *:bg-no-repeat
+    *:rounded-3xl *:border *:bg-no-repeat *:bg-card *:shadow-xs
     sm:[grid-template-areas:'a_a'_'b_d'_'e_e'_'c_h'_'c_g'_'f_f']
     sm:max-w-screen-sm
     xl:[grid-template-areas:'a_a_b_c'_'d_e_e_c'_'g_f_f_h']
@@ -39,88 +50,81 @@ const calendarText = "Time I spend practicing typing instead of contributing to 
     aria-label="Personal information and activity grid"
   >
     <div
-      class="first aspect-square [grid-area:a] relative
-      bg-[url('/static/bento/landscape-light-v5.svg')]
-      dark:bg-[url('/static/bento/landscape-dark-v5.svg')]
-      bg-cover bg-left sm:bg-center
-      sm:aspect-[2.1/1] xl:aspect-auto"
+      class="first aspect-square [grid-area:a] relative sm:aspect-[2.1/1] xl:aspect-auto"
       role="article"
       aria-label="Introduction"
     >
+      <Topography className='z-0 rounded-3xl' client:load/>
       <DialogOverlay
         content={introText}
-        className="overlay text-xs sm:text-sm tracking-wide w-5/6 sm:w-2/3 px-6 py-4 absolute top-4 right-4 z-[1] xl:opacity-100"
+        className="overlay text-xs sm:text-sm w-5/6 sm:w-2/3 px-6 py-4 absolute top-4 right-4 z-2 xl:opacity-100"
       />
       <DialogArea
         content={introText}
-        className="area text-xs sm:text-sm tracking-wide w-5/6 sm:w-2/3 px-6 py-4 absolute top-4 right-4 z-0"
+        className="area text-xs sm:text-sm w-5/6 sm:w-2/3 px-6 py-4 absolute top-4 right-4 z-1"
       />
       <DialogOverlay
         content={interestText}
-        className="overlay text-xs sm:text-sm tracking-wide w-5/6 sm:w-2/3 px-6 py-4 absolute top-40 sm:top-36 right-4 z-[1] xl:opacity-100"
+        className="overlay text-xs sm:text-sm w-5/6 sm:w-2/3 px-6 py-4 absolute top-40 sm:top-36 right-4 z-2 xl:opacity-100"
       />
       <DialogArea
         content={interestText}
-        className="area text-xs sm:text-sm tracking-wide w-5/6 sm:w-2/3 px-6 py-4 absolute top-40 sm:top-36 right-4 z-0"
+        className="area text-xs sm:text-sm w-5/6 sm:w-2/3 px-6 py-4 absolute top-40 sm:top-36 right-4 z-1"
       />
     </div>
 
     <div
-      class="has-overlay aspect-square [grid-area:b] relative
-      bg-[url('/static/bento/mount-light-v5.svg')]
-      dark:bg-[url('/static/bento/mount-dark-v5.svg')]
-      bg-cover bg-center"
+      class="has-overlay aspect-square [grid-area:b] relative"
       role="article"
       aria-label="Blog description"
     >
+      <Topography className='z-0 rounded-3xl' client:load/>
       <DialogOverlay
         content={contentText}
-        className="overlay text-xs tracking-wide w-4/5 p-4 absolute bottom-4 left-4 z-[1]"
+        className="overlay text-xs w-4/5 p-4 absolute bottom-4 left-4 z-2"
       />
       <DialogArea
         content={contentText}
-        className="text-xs tracking-wide w-4/5 p-4 absolute bottom-4 left-4 z-0"
+        className="text-xs w-4/5 p-4 absolute bottom-4 left-4 z-1"
       />
     </div>
 
     <div
-      class="aspect-square sm:aspect-auto [grid-area:c]
-      bg-[url('/static/bento/fishscale.webp')]
-      dark:bg-[url('/static/bento/fishscale-dark.webp')]
-      sm:bg-cover bg-[675px_auto] bg-center"
+      class="aspect-square sm:aspect-auto [grid-area:c]"
       aria-hidden="true"
     >
+      <Topography className='z-0 rounded-3xl' client:load/>
     </div>
 
     <div class="has-overlay relative [grid-area:d] aspect-square">
       <DialogOverlay
         content={musicText}
-        className="overlay text-[0.65rem] w-32 sm:w-28 px-3 pt-2 pb-3 absolute top-32 right-2 sm:top-24 z-[1]"
+        className="overlay text-[0.65rem] w-32 sm:w-28 px-3 pt-2 pb-3 absolute top-32 right-2 sm:top-24 z-1"
       />
       <DialogArea
         content={musicText}
         className="area text-[0.65rem] w-32 sm:w-28 px-3 pt-2 pb-3 absolute top-32 right-2 sm:top-24 z-0"
       />
       <MdHeadphones
-        className="overlay absolute z-[2] top-[10.5rem] sm:top-[8.75rem] right-4 text-primary size-7 transition-opacity duration-200 opacity-0"
+        className="overlay absolute z-2 top-[10.5rem] sm:top-[8.75rem] right-4 text-primary size-7 transition-opacity duration-200 opacity-0"
         aria-hidden="true"
       />
       <MusicPresence client:load />
     </div>
 
     <div
-      class="has-overlay relative flex aspect-[6/5] items-start overflow-hidden p-4 [grid-area:e] sm:aspect-[2.1/1] sm:items-center xl:aspect-auto"
+      class="has-overlay relative flex aspect-6/5 items-start overflow-hidden p-4 [grid-area:e] sm:aspect-[2.1/1] sm:items-center xl:aspect-auto"
     >
       <DialogOverlay
         content={blogText}
-        className="overlay text-[0.65rem] w-[6.5rem] px-3 pt-2 pb-3 absolute top-[12.5rem] right-40 sm:top-20 sm:right-2 z-[1]"
+        className="overlay text-[0.65rem] w-[6.5rem] px-3 pt-2 pb-3 absolute top-[12.5rem] right-40 sm:top-20 sm:right-2 z-1"
       />
       <DialogArea
         content={blogText}
         className="area text-[0.65rem] w-[6.5rem] px-3 pt-2 pb-3 absolute top-[12.5rem] right-40 sm:top-20 sm:right-2 z-0"
       />
       <BiSolidBellRing
-        className="overlay absolute z-[2] top-[15.25rem] right-[8.75rem] sm:top-[7.85rem] sm:right-4 text-primary size-6 transition-opacity duration-200 opacity-0"
+        className="overlay absolute z-2 top-[15.25rem] right-[8.75rem] sm:top-[7.85rem] sm:right-4 text-primary size-6 transition-opacity duration-200 opacity-0"
         aria-hidden="true"
       />
       {
@@ -131,7 +135,7 @@ const calendarText = "Time I spend practicing typing instead of contributing to 
               alt={`Featured image for the latest post: ${latestPost.data.title}`}
               width={477}
               height={251}
-              class="w-full rounded-2xl border border-border sm:ml-2 sm:w-[80%] grayscale"
+              class="w-full rounded-2xl border border-border sm:ml-2 sm:w-[80%]"
             />
             <Link
               href={`/blog/${latestPost.id}`}
@@ -152,17 +156,17 @@ const calendarText = "Time I spend practicing typing instead of contributing to 
     >
       <DialogOverlay
         content={calendarText}
-        className="overlay text-[0.65rem] w-44 px-3 py-2 absolute bottom-8 left-3 z-[2]"
+        className="overlay text-[0.65rem] w-44 px-3 py-2 absolute bottom-8 left-3 z-2"
       />
       <DialogArea
         content={calendarText}
-        className="area text-[0.65rem] w-44 px-3 py-2 absolute bottom-8 left-3 z-[1]"
+        className="area text-[0.65rem] w-44 px-3 py-2 absolute bottom-8 left-3 z-1"
       />
-      <SiMonkeytype
-        className="overlay absolute z-[2] bottom-5 left-44 text-primary size-8 transition-opacity duration-200 opacity-0"
+      <FaLaptopCode
+        className="overlay absolute z-2 bottom-5 left-44 text-primary size-7 transition-opacity duration-200 opacity-0"
         aria-hidden="true"
       />
-      <MonkeytypeCalendar client:load />
+      <WakatimeCalendar client:load />
     </div>
 
     <div
@@ -176,7 +180,7 @@ const calendarText = "Time I spend practicing typing instead of contributing to 
     >
       <Icon
         name="mdi:github"
-        class="absolute z-[1] size-1/2 text-primary sm:size-24"
+        class="absolute z-1 size-1/2 text-primary sm:size-24"
         aria-hidden="true"
       />
       <Link
