@@ -471,12 +471,12 @@ export function TypingGame({ onGameFinish }: TypingGameProps) {
       />
 
       <div
-        className={`hidden sm:flex flex-row items-center justify-end gap-6 text-large w-full max-w-4xl transition-opacity opacity-100`}
+        className={`hidden sm:flex flex-row items-center justify-end gap-6 w-full max-w-4xl transition-opacity opacity-100`}
       >
         {state.isGameReady ? (
           <button
             onClick={handleStartGame}
-            className="w-auto text-center text-muted-foreground cursor-pointer hover:text-foreground transition-colors bg-transparent border-none p-0 text-large"
+            className="w-auto text-center text-muted-foreground cursor-pointer hover:text-foreground transition-colors bg-transparent border-none p-0"
             aria-label="Start typing test"
           >
             Clickity-clackity

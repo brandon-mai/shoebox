@@ -3,6 +3,7 @@
 import { type FunctionComponent, useCallback, useEffect, useState } from 'react'
 import { SimplexNoise, Dithering } from '@paper-design/shaders-react'
 import { convert } from 'colorizr'
+import { Skeleton } from '@/components/ui/skeleton'
 
 interface Props {
   offsetX?: number;
@@ -28,9 +29,11 @@ const resolveCssColor = (str: string, el: HTMLElement = document.documentElement
 
 const TopographySimplex: FunctionComponent<Props> = ({ className = '', offsetX = 0, offsetY = 0 }) => {
   const [resolvedColors, setResolvedColors] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const updateColors = useCallback(() => {
     setResolvedColors(getThemeColors().map(c => resolveCssColor(c)));
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -49,6 +52,10 @@ const TopographySimplex: FunctionComponent<Props> = ({ className = '', offsetX =
       observer.disconnect();
     };
   }, [updateColors]);
+
+  if (isLoading) {
+    return <Skeleton className={`size-full ${className}`} />;
+  }
 
   return (
     <SimplexNoise
@@ -66,9 +73,11 @@ const TopographySimplex: FunctionComponent<Props> = ({ className = '', offsetX =
 
 const TopographyDithering: FunctionComponent<Props> = ({ className = '', offsetX = 0, offsetY = 0 }) => {
   const [resolvedColors, setResolvedColors] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const updateColors = useCallback(() => {
     setResolvedColors(getThemeColors().map(c => resolveCssColor(c)));
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -88,6 +97,10 @@ const TopographyDithering: FunctionComponent<Props> = ({ className = '', offsetX
     };
   }, [updateColors]);
 
+  if (isLoading) {
+    return <Skeleton className={`size-full ${className}`} />;
+  }
+
   return (
     <Dithering
       colorBack={resolvedColors[0]}
@@ -103,4 +116,4 @@ const TopographyDithering: FunctionComponent<Props> = ({ className = '', offsetX
   );
 };
 
-export {TopographySimplex, TopographyDithering}
+export { TopographySimplex, TopographyDithering }
