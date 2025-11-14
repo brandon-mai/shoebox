@@ -14,20 +14,14 @@ import { Icon } from 'astro-icon/components'
 import { MdHeadphones } from "react-icons/md"
 import { BiSolidBellRing } from "react-icons/bi"
 import { FaLaptopCode } from "react-icons/fa"
-import { SimplexNoise } from '@paper-design/shaders-react'
-import { Topography } from '@/components/bento/Topography'
+
+import { TypingGame } from '@/components/bento/TypingGame'
+import { TopographyDithering as Topography } from '@/components/bento/Topography'
+
 
 const latestPost = await getRecentPosts(SITE.featuredPostCount).then((posts) => posts[0])
 
-const getThemeColors = () => [
-  'var(--card-hex)',
-  'var(--background-hex)',
-  'var(--secondary-hex)',
-  'var(--border-hex)',
-  '#f5f5f5'
-]
-
-const introText = "Hi there! I'm Viet Bao Mai, an aspiring developer—researcher and currently an undergraduate at HUST, Vietnam. I mostly go by the name Brandon Mai online.";
+const introText = "Hi there! I'm Viet Bao Mai, an aspiring developer—researcher and currently an undergraduate. I mostly go by the name Brandon Mai online.";
 const interestText = "I'm interested in tech and AI, especially niche/lesser-known stuffs!";
 const contentText = "Here lies my writeups on what I'm interested in, and sometimes stuffs I want to get off my chest :D";
 const musicText = "What I'm listening to";
@@ -54,7 +48,9 @@ const calendarText = "Time I spend staring at the code editor screen";
       role="article"
       aria-label="Introduction"
     >
-      <Topography className='z-0 rounded-3xl' client:load/>
+      <Topography offsetX={0.55} className='hidden xl:flex z-0 rounded-3xl' client:load/>
+      <Topography offsetX={-0.55} offsetY={0.5} className='hidden sm:max-xl:flex z-0 rounded-3xl' client:load/>
+      <Topography offsetY={0.5} className='sm:hidden z-0 rounded-3xl' client:load/>
       <DialogOverlay
         content={introText}
         className="overlay text-xs sm:text-sm w-5/6 sm:w-2/3 px-6 py-4 absolute top-4 right-4 z-2 xl:opacity-100"
@@ -78,7 +74,9 @@ const calendarText = "Time I spend staring at the code editor screen";
       role="article"
       aria-label="Blog description"
     >
-      <Topography className='z-0 rounded-3xl' client:load/>
+      <Topography offsetX={-1} className='hidden xl:flex z-0 rounded-3xl' client:load/>
+      <Topography offsetY={-0.55} className='hidden sm:max-xl:flex z-0 rounded-3xl' client:load/>
+      <Topography offsetY={-0.55} className='sm:hidden z-0 rounded-3xl' client:load/>
       <DialogOverlay
         content={contentText}
         className="overlay text-xs w-4/5 p-4 absolute bottom-4 left-4 z-2"
@@ -93,7 +91,7 @@ const calendarText = "Time I spend staring at the code editor screen";
       class="aspect-square sm:aspect-auto [grid-area:c]"
       aria-hidden="true"
     >
-      <Topography className='z-0 rounded-3xl' client:load/>
+      <TypingGame client:load />
     </div>
 
     <div class="has-overlay relative [grid-area:d] aspect-square">
