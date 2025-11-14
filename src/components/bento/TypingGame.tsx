@@ -404,14 +404,14 @@ export function TypingGame({ onGameFinish }: TypingGameProps) {
   return (
     <div
       ref={gameContainerRef}
-      className="flex flex-col size-full p-4 sm:px-6 sm:py-12"
+      className="flex flex-col size-full p-4 sm:p-6"
       onClick={handleClick}
     >
       <div className="size-full">
         <div className="relative">
           <div
             ref={textContainerRef}
-            className="text-[0.6rem] sm:text-lg leading-relaxed wrap-break-word select-none h-32 sm:h-auto overflow-clip"
+            className="text-[0.6rem] sm:text-xl leading-relaxed wrap-break-word select-none h-32 sm:h-auto overflow-clip"
             role="textbox"
             aria-label="Text to type"
           >
@@ -438,7 +438,7 @@ export function TypingGame({ onGameFinish }: TypingGameProps) {
 
           {!state.isGameReady && (
             <div
-              className={`absolute w-[3px] h-5 pointer-events-none ${
+              className={`absolute w-[3px] h-6 pointer-events-none ${
                 state.isGameFinished ? "bg-black dark:bg-white" : "bg-blue-500"
               } ${
                 !isCursorMoving &&
