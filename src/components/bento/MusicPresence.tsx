@@ -58,7 +58,7 @@ const MusicPresence = () => {
     )
   }
 
-  if (!displayData) return <p>Something absolutely horrible has gone wrong</p>
+  if (!displayData) return <p>Something went wrong, please refresh the page</p>
 
   const { name: song, artist, album, image, url } = displayData
 
