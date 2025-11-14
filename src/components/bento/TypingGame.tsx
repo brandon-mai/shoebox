@@ -9,6 +9,10 @@ const EXCERPTS = [
   "Also, boys with glasses! I really like when their glasses have that suspicious looking gleam, and it's amazing how it can look really cool or just be a joke. I really like how it can fulfill all those abstract needs.",
   "Being able to switch up the styles and colors of glasses based on your mood is a lot of fun too! It's actually so much fun! You have those half rim glasses, or the thick frame glasses, everything! It's like you're enjoying all these kinds of glasses at a buffet.",
   "I really want Luna to try some on or Marine to try some on to replace her eyepatch. We really need glasses to become a thing in hololive and start selling them for HoloComi. Don't. You. Think. We. Really. Need. To. Officially. Give. Everyone. Glasses?",
+  "After working tirelessly for 10 years, Little John finally saved up enough money to buy this 0.001 square meters apartment in New York. He borrowed galvanized square steel and eco friendly woods from his aunt and proceed to transform the tiny room into fully functional house.",
+  "Teach a man to cook, and he can't fish. BUT teach a man to fish and he feeds himself and cooks. When you- Why teach man cook and he AHHHHHH! Teach man to cook and cook good not good. He die. Starve. Teach man fish, not starve. Cook and fish starve- not. If you've heard that before.",
+  "We didn't realize we were making memories. We just knew we were having fun.",
+  "You can't wipe out your consciousness. You can't turn it off either. What you can do is, simply, experience it.",
 ];
 
 const getRandomExcerpt = () => {
