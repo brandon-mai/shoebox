@@ -13,6 +13,10 @@ const EXCERPTS = [
   "Teach a man to cook, and he can't fish. BUT teach a man to fish and he feeds himself and cooks. When you- Why teach man cook and he AHHHHHH! Teach man to cook and cook good not good. He die. Starve. Teach man fish, not starve. Cook and fish starve- not. If you've heard that before.",
   "We didn't realize we were making memories. We just knew we were having fun.",
   "You can't wipe out your consciousness. You can't turn it off either. What you can do is, simply, experience it.",
+  "After years of listening to my music at 44.1kHz (like a peasant), I finally upgraded my setup to 96kHz hi def. The moment I pressed play, my houseplants stood up straighter. My dog made direct, knowing eye contact with me. Somewhere in the distance, I swear a Tibetan monk whispered, \“finally.\”",
+  "Honestly, I don't even listen to music anymore-I experience it on a cellular level. My fillings resonated during a bass drop yesterday. I'm pretty sure I astral projected.",
+  "Don't get me started on how embarrassing it must be for all the Muggles listening on Spotify. I walked past someone playing 320kbps MP3 and my ears folded themselves shut out of self-respect.",
+  "TL;DR: 96kHz isn't just audio. It's a lifestyle. It's a calling. It's a burden, really, being this sonically superior. Sometimes I wish I could go back, but then I remember I can hear dust motes landing on my speaker cones now.",
 ];
 
 const getRandomExcerpt = () => {
@@ -120,7 +124,7 @@ export function TypingGame({ onGameFinish }: TypingGameProps) {
     };
   }, [state.isGameActive, state.isGamePaused, state.isGameFinished]);
 
-  // MODIFICATION: New effect to focus the input when the game starts
+  // focus the input when the game starts
   useEffect(() => {
     if (state.isGameActive && !state.isGamePaused) {
       inputRef.current?.focus();
@@ -178,8 +182,6 @@ export function TypingGame({ onGameFinish }: TypingGameProps) {
       isGameActive: true,
       startTime: Date.now(),
     }));
-    // MODIFICATION: Removed .focus() call from here
-    // inputRef.current?.focus();
   };
 
   const handleInput = useCallback(
@@ -483,7 +485,7 @@ export function TypingGame({ onGameFinish }: TypingGameProps) {
             className="w-auto text-center text-muted-foreground cursor-pointer hover:text-foreground transition-colors bg-transparent border-none p-0"
             aria-label="Start typing test"
           >
-            Clickity-clackity
+          Click to Type
           </button>
         ) : state.isGamePaused ? (
           <span className="text-muted-foreground tabular-nums w-auto text-center">
