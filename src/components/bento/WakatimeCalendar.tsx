@@ -65,7 +65,7 @@ async function fetchCalendarData(): Promise<WakatimeActivity[]> {
 
   // Calculate the n-month window
   const today = new Date()
-  const startDate = new Date(today.getFullYear(), today.getMonth() - 4, 1)
+  const startDate = new Date(today.getFullYear(), today.getMonth() - 3, 1)
   const endDate = new Date(today.getFullYear(), today.getMonth() + 1, 1)
 
   // Format dates to 'YYYY-MM-DD' for simple string comparison
@@ -74,8 +74,20 @@ async function fetchCalendarData(): Promise<WakatimeActivity[]> {
 
   // Filter activities to match the desired date range
   const filteredActivities = allActivities.filter(activity => {
-    return activity.date >= startDateString && activity.date <= endDateString
+    return activity.date >= startDateString
   })
+
+  let todayDateString = today.toISOString().split('T')[0]
+  while (todayDateString <= endDateString) {
+    filteredActivities.push({
+      date: todayDateString,
+      count: 0,
+      level: 0
+    })
+    
+    today.setDate(today.getDate() + 1)
+    todayDateString = today.toISOString().split('T')[0]
+  }
 
   return filteredActivities
 }
