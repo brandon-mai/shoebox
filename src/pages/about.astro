@@ -9,7 +9,7 @@ import { getAllProjects } from '@/lib/data-utils'
 const projects = await getAllProjects()
 ---
 
-<Layout>
+<Layout class="max-w-3xl">
   <PageHead slot="head" title="About" />
   <Breadcrumbs items={[{ label: 'About', icon: 'lucide:info' }]} />
 
@@ -42,7 +42,7 @@ const projects = await getAllProjects()
         </ul>
       </div>
 
-      <div class="prose mb-8">
+      <div class="prose my-8">
         <p>
           Essentially my (Bao's) dump of ideas and thoughts and whatnot.
           Some call it a blog or digital garden, I like the term

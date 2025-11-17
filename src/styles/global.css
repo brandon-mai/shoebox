@@ -1,10 +1,6 @@
-@import 'https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css';
 @import 'tailwindcss';
-@import "../../node_modules/remark-github-alerts/styles/github-colors-light.css";
-@import "../../node_modules/remark-github-alerts/styles/github-colors-dark-class.css";
-@import "../../node_modules/remark-github-alerts/styles/github-base.css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme inline {
   --font-sans:
@@ -133,7 +129,7 @@
   --spacing: 0.25rem;
 }
 
-.dark {
+[data-theme='dark'] {
   --background: oklch(0.2178 0 0);
   --foreground: oklch(0.8853 0 0);
   --card: oklch(0.2435 0 0);

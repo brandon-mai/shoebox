@@ -45,6 +45,7 @@
     "colorizr": "^3.0.8",
     "lucide-react": "^0.469.0",
     "patch-package": "^8.0.1",
+    "radix-ui": "^1.4.3",
     "react": "19.0.0",
     "react-activity-calendar": "^2.7.15",
     "react-dom": "19.0.0",

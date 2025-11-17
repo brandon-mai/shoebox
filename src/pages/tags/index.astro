@@ -10,7 +10,7 @@ import { Icon } from 'astro-icon/components'
 const sortedTags = await getSortedTags()
 ---
 
-<Layout>
+<Layout class="max-w-3xl">
   <PageHead slot="head" title="Tags" />
   <Breadcrumbs items={[{ label: 'Tags', icon: 'lucide:tags' }]} />
 
@@ -20,13 +20,11 @@ const sortedTags = await getSortedTags()
         sortedTags.map(({ tag, count }) => (
           <Link
             href={`/tags/${tag}`}
-            class={badgeVariants({ variant: 'secondary' })}
+            class={badgeVariants({ variant: 'muted' })}
           >
             <Icon name="lucide:hash" class="size-3" />
             {tag}
-            <span class="text-muted-foreground ml-1.5">
-              ({count})
-            </span>
+            <span class="text-muted-foreground ml-1.5">({count})</span>
           </Link>
         ))
       }

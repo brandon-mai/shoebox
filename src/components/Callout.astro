@@ -153,44 +153,31 @@ const { title, variant = 'note', defaultOpen = true, ...rest } = Astro.props
   class={cn(
     calloutVariants({ variant }),
     rest.class,
-    '[&[open]>summary_svg:last-child]:rotate-180',
+    '[&[open]>summary_svg:last-child]:rotate-180 [&[open]>summary]:mb-3',
   )}
   {...rest}
   open={defaultOpen}
 >
   <summary
-    class="flex cursor-pointer flex-wrap items-center font-medium [&::-webkit-details-marker]:hidden"
+    class="flex cursor-pointer items-center font-medium [&::-webkit-details-marker]:hidden"
   >
-    <div class="flex flex-wrap items-center">
-      <Icon
-        name={calloutConfig[variant].icon}
-        class={cn(
-          'mr-2 size-4 flex-shrink-0',
-          calloutConfig[variant].textColor,
-        )}
-      />
-      <span class={cn('font-medium mr-1', calloutConfig[variant].textColor)}
-        >{capitalize(variant)}</span
-      >
-      {
-        title && (
-          <span
-            class={cn(
-              'font-normal opacity-70',
-              calloutConfig[variant].textColor,
-            )}
-          >
-            ({title})
-          </span>
-        )
-      }
-    </div>
+    <Icon
+      name={calloutConfig[variant].icon}
+      class={cn('mr-2 size-4 shrink-0', calloutConfig[variant].textColor)}
+    />
+    <span class={cn('font-medium mr-2', calloutConfig[variant].textColor)}>
+      {capitalize(variant)}
+      {title && <span class="font-normal opacity-70"> ({title})</span>}
+    </span>
     <Icon
       name="lucide:chevron-down"
-      class="ml-auto h-4 w-4 transition-transform duration-200"
+      class={cn(
+        'ml-auto h-4 w-4 shrink-0 transition-transform duration-200',
+        calloutConfig[variant].textColor,
+      )}
     />
   </summary>
-  <div class="mt-2 [&>*:first-child]:mt-0 [&>*:last-child]:mb-0 [&>p]:my-3">
+  <div>
     <slot />
   </div>
 </details>
