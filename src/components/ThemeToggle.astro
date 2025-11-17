@@ -80,8 +80,8 @@ import { Icon } from 'astro-icon/components'
     const element = document.documentElement
 
     element.classList.add('[&_*]:transition-none')
-    window.getComputedStyle(element).getPropertyValue('opacity')
     element.setAttribute('data-theme', storedTheme)
+    window.getComputedStyle(element).getPropertyValue('opacity')
 
     updateThemeColorMeta()
 
