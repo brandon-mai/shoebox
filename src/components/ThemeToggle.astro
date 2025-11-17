@@ -31,6 +31,20 @@ import { Icon } from 'astro-icon/components'
 </script>
 
 <script>
+  function updateThemeColorMeta() {
+    const computedColor = getComputedStyle(document.documentElement).backgroundColor
+    const metaTags = document.querySelectorAll('meta[name="theme-color"]')
+
+    if (!metaTags.length) {
+      console.warn("ThemeToggle: No 'theme-color' meta tag found to update.")
+      return
+    }
+
+    metaTags.forEach((tag) => {
+      tag.setAttribute('content', computedColor)
+    })
+  }
+
   function handleToggleClick() {
     const element = document.documentElement
     const currentTheme = element.getAttribute('data-theme')
@@ -39,6 +53,8 @@ import { Icon } from 'astro-icon/components'
     element.classList.add('[&_*]:transition-none')
     element.setAttribute('data-theme', newTheme)
     window.getComputedStyle(element).getPropertyValue('opacity')
+
+    updateThemeColorMeta()
 
     requestAnimationFrame(() => {
       element.classList.remove('[&_*]:transition-none')
@@ -55,6 +71,10 @@ import { Icon } from 'astro-icon/components'
 
   initThemeToggle()
 
+  document.addEventListener('DOMContentLoaded', () => {
+    updateThemeColorMeta()
+  })
+
   document.addEventListener('astro:after-swap', () => {
     const storedTheme = localStorage.getItem('theme') || 'light'
     const element = document.documentElement
@@ -62,6 +82,8 @@ import { Icon } from 'astro-icon/components'
     element.classList.add('[&_*]:transition-none')
     window.getComputedStyle(element).getPropertyValue('opacity')
     element.setAttribute('data-theme', storedTheme)
+
+    updateThemeColorMeta()
 
     requestAnimationFrame(() => {
       element.classList.remove('[&_*]:transition-none')
