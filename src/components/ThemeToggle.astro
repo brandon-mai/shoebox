@@ -31,18 +31,31 @@ import { Icon } from 'astro-icon/components'
 </script>
 
 <script>
+  // --- UPDATED FUNCTION ---
+  /**
+   * Updates the 'theme-color' meta tag.
+   * This uses a "remove and re-add" hack to try and force
+   * Safari iOS to recognize the change.
+   */
   function updateThemeColorMeta() {
+    // Get the *actual* computed color, which respects your CSS variables
     const computedColor = getComputedStyle(document.documentElement).backgroundColor
-    const metaTags = document.querySelectorAll('meta[name="theme-color"]')
 
-    if (!metaTags.length) {
-      console.warn("ThemeToggle: No 'theme-color' meta tag found to update.")
-      return
+    if (!computedColor) return // Safety check
+
+    const oldMetaTag = document.getElementById('theme-color-meta')
+
+    // If the tag exists, remove it
+    if (oldMetaTag) {
+      oldMetaTag.remove()
     }
 
-    metaTags.forEach((tag) => {
-      tag.setAttribute('content', computedColor)
-    })
+    // Create a new meta tag with the same ID and new color
+    const newMetaTag = document.createElement('meta')
+    newMetaTag.id = 'theme-color-meta'
+    newMetaTag.name = 'theme-color'
+    newMetaTag.setAttribute('content', computedColor)
+    document.head.appendChild(newMetaTag)
   }
 
   function handleToggleClick() {
@@ -52,8 +65,12 @@ import { Icon } from 'astro-icon/components'
 
     element.classList.add('[&_*]:transition-none')
     element.setAttribute('data-theme', newTheme)
+
+    // Force a style reflow
     window.getComputedStyle(element).getPropertyValue('opacity')
 
+    // --- UPDATED ---
+    // This will now run the "remove and re-add" hack
     updateThemeColorMeta()
 
     requestAnimationFrame(() => {
@@ -69,26 +86,37 @@ import { Icon } from 'astro-icon/components'
       ?.addEventListener('click', handleToggleClick)
   }
 
+  // Set up the click listener
   initThemeToggle()
 
+  // --- UPDATED ---
+  // Run on initial page load (after inline script)
+  // to ensure the color is from computed CSS, not hard-coded.
   document.addEventListener('DOMContentLoaded', () => {
-    updateThemeColorMeta()
+    // We use a small delay to ensure CSS has been fully parsed.
+    setTimeout(updateThemeColorMeta, 100)
   })
 
+  // Handle theme updates after Astro's page swaps
   document.addEventListener('astro:after-swap', () => {
     const storedTheme = localStorage.getItem('theme') || 'light'
     const element = document.documentElement
 
     element.classList.add('[&_*]:transition-none')
     element.setAttribute('data-theme', storedTheme)
+    
+    // Force reflow
     window.getComputedStyle(element).getPropertyValue('opacity')
 
+    // --- UPDATED ---
+    // Update the meta tag for the new page
     updateThemeColorMeta()
 
     requestAnimationFrame(() => {
       element.classList.remove('[&_*]:transition-none')
     })
 
+    // Re-attach the click listener
     initThemeToggle()
   })
 </script>
