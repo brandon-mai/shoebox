@@ -27,6 +27,7 @@ const authors = defineCollection({
     website: z.string().url().optional(),
     twitter: z.string().url().optional(),
     github: z.string().url().optional(),
+    kaggle: z.string().url().optional(),
     linkedin: z.string().url().optional(),
     discord: z.string().url().optional(),
   }),
