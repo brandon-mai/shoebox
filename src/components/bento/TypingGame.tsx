@@ -17,6 +17,7 @@ const EXCERPTS = [
   "Honestly, I don't even listen to music anymore-I experience it on a cellular level. My fillings resonated during a bass drop yesterday. I'm pretty sure I astral projected.",
   "Don't get me started on how embarrassing it must be for all the Muggles listening on Spotify. I walked past someone playing 320kbps MP3 and my ears folded themselves shut out of self-respect.",
   "TL;DR: 96kHz isn't just audio. It's a lifestyle. It's a calling. It's a burden, really, being this sonically superior. Sometimes I wish I could go back, but then I remember I can hear dust motes landing on my speaker cones now.",
+  "Mori Calliope confirms \"Orpheus\" and \"Go-getters\" are were once they are did. They became the first ever to have the first as in the era of that when of a digital streaming and the media began. Congratulations!",
 ];
 
 const getRandomExcerpt = () => {
