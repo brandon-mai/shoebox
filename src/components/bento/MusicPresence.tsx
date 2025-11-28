@@ -163,10 +163,10 @@ const MusicPresence = () => {
       <div className="relative flex h-full w-full flex-col justify-between p-6">
         <div className="flex h-full items-center justify-center">
           <div className="text-center">
-            <SiSpotify
+            {/* <SiSpotify
               size={48}
               className="text-muted-foreground mx-auto mb-4"
-            />
+            /> */}
             <p className="text-muted-foreground text-sm">
               No music data available
             </p>
@@ -197,8 +197,8 @@ const MusicPresence = () => {
               <PiWaveformBold size={22} />
               <span className="text-sm">
                 {displayData['@attr']?.nowplaying === 'true'
-                  ? 'Now playing...'
-                  : 'Last played...'}
+                  ? 'Now playing…'
+                  : 'Last played…'}
               </span>
             </span>
             <span className="text-md mb-2 truncate font-bold leading-none">
