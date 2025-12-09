@@ -161,7 +161,7 @@ const MusicPresence = () => {
   if (!displayData) {
     return (
       <div className="relative flex h-full w-full flex-col justify-between p-6">
-        <div className="flex h-full items-center justify-center">
+        <div className="flex h-full items-end justify-center">
           <div className="text-center">
             {/* <SiSpotify
               size={48}
