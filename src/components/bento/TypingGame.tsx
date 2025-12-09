@@ -11,8 +11,6 @@ const EXCERPTS = [
   "I really want Luna to try some on or Marine to try some on to replace her eyepatch. We really need glasses to become a thing in hololive and start selling them for HoloComi. Don't. You. Think. We. Really. Need. To. Officially. Give. Everyone. Glasses?",
   "After working tirelessly for 10 years, Little John finally saved up enough money to buy this 0.001 square meters apartment in New York. He borrowed galvanized square steel and eco friendly woods from his aunt and proceed to transform the tiny room into fully functional house.",
   "Teach a man to cook, and he can't fish. BUT teach a man to fish and he feeds himself and cooks. When you- Why teach man cook and he AHHHHHH! Teach man to cook and cook good not good. He die. Starve. Teach man fish, not starve. Cook and fish starve- not. If you've heard that before.",
-  "We didn't realize we were making memories. We just knew we were having fun.",
-  "You can't wipe out your consciousness. You can't turn it off either. What you can do is, simply, experience it.",
   "After years of listening to my music at 44.1kHz (like a peasant), I finally upgraded my setup to 96kHz hi def. The moment I pressed play, my houseplants stood up straighter. My dog made direct, knowing eye contact with me. Somewhere in the distance, I swear a Tibetan monk whispered, \“finally.\”",
   "Honestly, I don't even listen to music anymore-I experience it on a cellular level. My fillings resonated during a bass drop yesterday. I'm pretty sure I astral projected.",
   "Don't get me started on how embarrassing it must be for all the Muggles listening on Spotify. I walked past someone playing 320kbps MP3 and my ears folded themselves shut out of self-respect.",
