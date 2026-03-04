@@ -1,11 +1,11 @@
 import type { JSX } from 'react'
-import { type IconType } from 'react-icons/lib'
+import { type IconType } from 'react-icons'
 import {
   SiAstro,
   SiC,
   SiCplusplus,
   // SiCsharp,
-  SiCss3,
+  SiCss,
   SiHtml5,
   SiJavascript,
   SiJson,
@@ -21,7 +21,7 @@ import {
 export const languageIcons: { [key: string]: IconType } = {
   astro: SiAstro,
   html: SiHtml5,
-  css: SiCss3,
+  css: SiCss,
   javascript: SiJavascript,
   python: SiPython,
   c: SiC,
