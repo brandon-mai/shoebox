@@ -123,9 +123,30 @@ const WakatimeCalendar: FunctionComponent = () => {
     return <Skeleton className="h-[70%] w-[85%] rounded-3xl" />
   }
 
+  const themeColors = getThemeColors()
+
+  const legend = (
+    <span
+      className="text-xs sm:text-sm font-medium bg-clip-text text-transparent select-none self-end mt-1"
+      style={{
+        backgroundImage: `linear-gradient(to right, ${themeColors[1]}, ${themeColors[2]}, ${themeColors[3]}, ${themeColors[4]})`,
+      }}
+    >
+      Less is More
+    </span>
+    // <span className="text-xs sm:text-sm font-medium select-none self-end mt-1 flex">
+    //   <span style={{ color: themeColors[1] }}>Les</span>
+    //   <span>
+    //     <span style={{ color: themeColors[2] }}>s i</span>
+    //     <span style={{ color: themeColors[3] }}>s M</span>
+    //   </span>
+    //   <span style={{ color: themeColors[5] }}>ore</span>
+    // </span>
+  )
+
   return (
     <>
-      <div className="m-4 hidden sm:block">
+      <div className="m-4 hidden sm:flex sm:flex-col sm:items-end gap-1">
         <Calendar
           data={data}
           theme={{
@@ -137,10 +158,10 @@ const WakatimeCalendar: FunctionComponent = () => {
           blockRadius={7}
           maxLevel={4}
           hideTotalCount
-          hideColorLegend
         />
+        {/* {legend} */}
       </div>
-      <div className="m-4 scale-110 sm:hidden">
+      <div className="m-4 scale-110 sm:hidden flex flex-col items-end gap-1">
         <Calendar
           data={data.slice(-60)}
           theme={{
@@ -154,6 +175,7 @@ const WakatimeCalendar: FunctionComponent = () => {
           hideTotalCount
           hideColorLegend
         />
+        {legend}
       </div>
     </>
   )
