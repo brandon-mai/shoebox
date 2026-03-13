@@ -25,6 +25,13 @@
   }
 }
 
+/* Unlayered — beats @layer components' .prose p { text-foreground/80 }.
+   Mermaid renders node labels as <foreignObject><span><p>, so this makes
+   the <p> inherit the classDef color set on the parent <span>. */
+svg foreignObject p {
+  color: inherit;
+}
+
 @layer components {
   .prose {
     @apply text-foreground text-sm leading-7;

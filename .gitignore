@@ -34,3 +34,10 @@ public/static/cwebp.exe
 # frontmatter
 .frontmatter/
 frontmatter.json
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
