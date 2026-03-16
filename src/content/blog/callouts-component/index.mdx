@@ -7,7 +7,7 @@ image: './banner.png'
 authors: ['enscribe']
 ---
 
-import Callout from '@/components/Callout.astro'
+import Callout from '@/components/callout.astro'
 import { Icon } from 'astro-icon/components'
 
 ## Our (hesitantly) first content-based component
@@ -24,7 +24,7 @@ However, just based on some blog posts I've seen that use this template, I felt 
 
 I've added a simple `Callout.astro` to `src/components` that now comes shipped with the template. It's a very easy-to-read component that has an insanely long configuration scheme for all of the different types of callouts that I've added. Fundamentally, it follows the same paradigm as [shadcn/ui](https://ui.shadcn.com) which uses [class-variance-authority](https://cva.style/docs) to create different "variants" on top of a base styling scheme:
 
-```astro title="src/components/Callout.astro" collapse={12-126} {8-10,131}
+```astro title="src/components/callout.astro" collapse={12-126} {8-10,131}
 ---
 import { cn } from '@/lib/utils'
 import { Icon } from 'astro-icon/components'
@@ -183,7 +183,7 @@ image: './1200x630.png'
 authors: ['enscribe']
 ---
 
-import Callout from '@/components/Callout.astro'
+import Callout from '@/components/callout.astro'
 ```
 
 Then, you can use the component like so. This is just an example but you should actually read the text since it's relevant to the article:
