@@ -19,12 +19,13 @@ import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
 import type { ExpressiveCodeTheme } from 'rehype-expressive-code'
 
 import tailwindcss from '@tailwindcss/vite'
+import basicSsl from '@vitejs/plugin-basic-ssl';
 
 export default defineConfig({
   site: 'https://vietbaomai.com',
   integrations: [mdx(), react(), sitemap(), icon()],
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss(), basicSsl()],
   },
   server: {
     port: 1234,

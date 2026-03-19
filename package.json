@@ -60,6 +60,7 @@
   "devDependencies": {
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.5.0",
+    "@vitejs/plugin-basic-ssl": "^2.2.0",
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-astro-organize-imports": "^0.4.11",

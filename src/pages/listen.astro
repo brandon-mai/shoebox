@@ -1,0 +1,31 @@
+---
+import Breadcrumbs from '@/components/breadcrumbs.astro'
+import PageHead from '@/components/page-head.astro'
+import Layout from '@/layouts/layout.astro'
+import { RadioPlayer } from '@/components/bento/RadioPlayer'
+---
+
+<Layout class="max-w-3xl">
+  <Fragment slot="head">
+    <PageHead title="Listen" />
+    <meta name="referrer" content="no-referrer" />
+  </Fragment>
+  
+  <Breadcrumbs items={[{ label: 'Listen', icon: 'lucide:radio' }]} />
+
+  <section class="flex flex-col gap-6">
+    <RadioPlayer client:only="react" className="mx-auto w-full my-4" />
+
+    <div class="prose">
+      <p>
+        A better implementation for <a href="https://listen.moe/" target="_blank" rel="noopener noreferrer">LISTEN.moe</a> experience
+        that:
+        <ul>
+          <li>Correctly sends metadata to media session (looks good on iDevice lock screen).</li>
+          <li>And freedom for more features I have not thought of / had time to implement, yet.</li>
+        </ul>
+      </p>
+      <p>Leave this page open or play it in the background to enjoy J-Pop music continuous streaming.</p>
+    </div>
+  </section>
+</Layout>
