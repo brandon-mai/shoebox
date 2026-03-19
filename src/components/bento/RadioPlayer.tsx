@@ -3,7 +3,8 @@ import { Button } from '@/components/ui/button'
 import { Play, Pause, Radio } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-const DEFAULT_COVER = '/static/bento/album-placeholder.webp'
+// const DEFAULT_COVER = '/static/bento/album-placeholder.webp'
+const DEFAULT_COVER = 'https://static.photos/abstract/200x200/2.webp'
 
 interface Artist {
   name: string
