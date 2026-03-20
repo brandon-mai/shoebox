@@ -4,6 +4,7 @@ import mdx from '@astrojs/mdx'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import icon from 'astro-icon'
+import vercel from '@astrojs/vercel'
 
 import { rehypeHeadingIds } from '@astrojs/markdown-remark'
 import rehypeExpressiveCode from 'rehype-expressive-code'
@@ -23,6 +24,8 @@ import basicSsl from '@vitejs/plugin-basic-ssl';
 
 export default defineConfig({
   site: 'https://vietbaomai.com',
+  output: 'static',
+  adapter: vercel(),
   integrations: [mdx(), react(), sitemap(), icon()],
   vite: {
     plugins: [tailwindcss(), basicSsl()],

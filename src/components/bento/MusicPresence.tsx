@@ -26,7 +26,7 @@ const MAX_RETRIES = 3
 const getValidImageUrl = (images: { '#text': string }[]) => {
   const imageUrl = images[3]['#text']
   if (!imageUrl || imageUrl === '' || imageUrl.includes('2a96cbd8b46e442fc41c2b86b821562f')) {
-    return '/static/bento/album-placeholder.webp'
+    return 'https://static.photos/abstract/200x200/2.webp'
   }
   return imageUrl.replace('.jpg', '.webp')
 }
