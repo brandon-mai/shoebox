@@ -27,7 +27,7 @@ const isVercel = !!process.env.VERCEL;
 const launchOptions = isVercel ? {
   executablePath: await chromium.executablePath(),
   args: chromium.args,
-  headless: chromium.headless,
+  headless: !!chromium.headless,
 } : {};
 
 export default defineConfig({
