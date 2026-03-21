@@ -9,13 +9,13 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "prettier": "prettier --write **/*.{ts,tsx,css,astro} --ignore-path .gitignore",
-    "postinstall": "playwright install chromium"
+    "prettier": "prettier --write **/*.{ts,tsx,css,astro} --ignore-path .gitignore"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",
     "@astrojs/markdown-remark": "^7.0.0",
     "@astrojs/mdx": "5.0.1",
+    "@sparticuz/chromium": "^131.0.0",
     "@astrojs/react": "5.0.0",
     "@astrojs/rss": "^4.0.17",
     "@astrojs/sitemap": "^3.7.1",
@@ -55,6 +55,7 @@
     "remark-emoji": "^5.0.2",
     "remark-math": "^6.0.0",
     "sharp": "^0.34.5",
+    "playwright-core": "^1.58.2",
     "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3"

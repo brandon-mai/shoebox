@@ -14,6 +14,7 @@ import rehypeShiki from '@shikijs/rehype'
 import remarkEmoji from 'remark-emoji'
 import remarkMath from 'remark-math'
 import rehypeMermaid from 'rehype-mermaid'
+import chromium from '@sparticuz/chromium'
 
 import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections'
 import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
@@ -21,6 +22,13 @@ import type { ExpressiveCodeTheme } from 'rehype-expressive-code'
 
 import tailwindcss from '@tailwindcss/vite'
 import basicSsl from '@vitejs/plugin-basic-ssl';
+
+const isVercel = !!process.env.VERCEL;
+const launchOptions = isVercel ? {
+  executablePath: await chromium.executablePath(),
+  args: chromium.args,
+  headless: chromium.headless,
+} : {};
 
 export default defineConfig({
   site: 'https://vietbaomai.com',
@@ -49,7 +57,10 @@ export default defineConfig({
       ],
       rehypeHeadingIds,
       rehypeKatex,
-      rehypeMermaid,
+      [
+        rehypeMermaid,
+        { launchOptions },
+      ],
       [
         rehypeExpressiveCode,
         {
