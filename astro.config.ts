@@ -5,6 +5,7 @@ import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import icon from 'astro-icon'
 import vercel from '@astrojs/vercel'
+import mermaid from 'astro-mermaid'
 
 import { rehypeHeadingIds } from '@astrojs/markdown-remark'
 import rehypeExpressiveCode from 'rehype-expressive-code'
@@ -13,8 +14,6 @@ import rehypeKatex from 'rehype-katex'
 import rehypeShiki from '@shikijs/rehype'
 import remarkEmoji from 'remark-emoji'
 import remarkMath from 'remark-math'
-import rehypeMermaid from 'rehype-mermaid'
-import chromium from '@sparticuz/chromium'
 
 import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections'
 import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
@@ -23,18 +22,11 @@ import type { ExpressiveCodeTheme } from 'rehype-expressive-code'
 import tailwindcss from '@tailwindcss/vite'
 import basicSsl from '@vitejs/plugin-basic-ssl';
 
-const isVercel = !!process.env.VERCEL;
-const launchOptions = isVercel ? {
-  executablePath: await chromium.executablePath(),
-  args: chromium.args,
-  headless: !!chromium.headless,
-} : {};
-
 export default defineConfig({
   site: 'https://vietbaomai.com',
   output: 'static',
   adapter: vercel(),
-  integrations: [mdx(), react(), sitemap(), icon()],
+  integrations: [mdx(), react(), sitemap(), icon(), mermaid()],
   vite: {
     plugins: [tailwindcss(), basicSsl()],
   },
@@ -57,10 +49,6 @@ export default defineConfig({
       ],
       rehypeHeadingIds,
       rehypeKatex,
-      [
-        rehypeMermaid,
-        { launchOptions },
-      ],
       [
         rehypeExpressiveCode,
         {
