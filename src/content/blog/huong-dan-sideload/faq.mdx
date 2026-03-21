@@ -1,0 +1,31 @@
+---
+title: Những câu hỏi có thể gặp (FAQ)
+description: Những vấn đề thường gặp phải trong quá trình cài/sử dụng SideStore + LiveContainer và cách xử lý
+date: 2026-03-04
+tags:
+    - guide
+    - ios
+authors:
+    - brandonmai
+order: 1
+---
+
+## Không dùng máy tính để cài thì sao?
+
+Một câu hỏi rất tự nhiên và hợp lý khi có nhiều IPA installer trên chính thiết bị iOS/iPadOS giúp chúng ta sideload SideStore hoặc SideStore + LiveContainer mà không cần máy tính.
+
+Câu trả lời là **không hoạt động được**, vì chúng ta vẫn cần tạo pairing file. Pairing file cơ bản được tạo ra khi bạn cắm thiết bị vào máy tính và bấm "Trust". Do đó, file này là độc nhất phụ thuộc vào thiết bị và máy tính của bạn, và máy tính là bắt buộc.
+
+## Cài IPA của SideStore ban đầu bị lỗi
+
+Thường gặp nhất là khi đang cài SideStore + LiveContainer. Cách xử lý khá giống trường hợp của câu hỏi trước, đó là **tìm cách khác để cài IPA đó lên thiết bị iOS/iPadOS của bạn**. Sau đó, vẫn cần máy tính để tạo pairing file để hoàn thành quá trình setup.
+
+## Có thể sử dụng VPN khác cùng lúc với StosVPN/LocalDevVPN không?
+
+Vấn đề mình từng gặp khi cài app từ repository trong SideStore. Quá trình cài tự động này cơ bản là Tải file IPA vào cache (thường được host trên https://catbox.moe/) → Sign → Refresh lần đầu. Bước Refresh cần bật StosVPN/LocalDevVPN. Và đôi khi trang catbox.moe bị chặn ở một số nơi, dẫn đến việc phải bật VPN khác để fake IP sang khu vực khác không bị chặn (đồng nghĩa với việc phải tắt StosVPN/LocalDevVPN).
+
+Một số giải pháp khả thi là:
+
+- Đợi đến lúc trang lại up hoặc không bị chặn
+- Dùng mạng khác không bị chặn (e.g. của nhà mạng khác)
+- Tải file IPA thủ công bằng fake IP, sau đó cài bình thường bằng SideStore
