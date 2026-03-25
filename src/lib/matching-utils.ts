@@ -66,10 +66,10 @@ export function calculateMatchScore(radio: RadioMetadata, spotify: SpotifyMetada
   // 1. Duration Binary Gate (>20s diff = automatic rejection)
   let durScore = 0.5; // Neutral score if unknown
   if (radio.duration > 0) {
-    const diffSec = Math.abs(radio.duration - (spotify.duration_ms / 1000));
-    if (diffSec > 20) {
-      return 0; // Strict binary gate
-    }
+    // const diffSec = Math.abs(radio.duration - (spotify.duration_ms / 1000));
+    // if (diffSec > 20) {
+    //   return 0; // Strict binary gate
+    // }
     durScore = durationSimilarity(radio.duration, spotify.duration_ms);
   }
 

@@ -24,7 +24,9 @@ async function getKuroshiro(): Promise<Kuroshiro | null> {
       const AnalyzerClass = typeof KuromojiAnalyzer === 'function' ? KuromojiAnalyzer : KuromojiAnalyzer.default || KuromojiAnalyzer;
       
       const kuroshiro = new KuroshiroClass();
-      await kuroshiro.init(new AnalyzerClass());
+      await kuroshiro.init(new AnalyzerClass({
+        dictPath: "public/dict/"
+      }));
       kuroshiroInstance = kuroshiro;
       return kuroshiro;
     } catch (e) {
