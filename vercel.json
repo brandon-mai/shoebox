@@ -1,6 +1,6 @@
 {
     "functions": {
-        "pages/api/spotify-search.ts": {
+        "src/pages/api/spotify-search.ts": {
             "includeFiles": "node_modules/kuromoji/dict/**"
         }
     }
