@@ -1,7 +1,0 @@
-{
-  "functions": {
-    "src/pages/api/spotify-search.ts": {
-      "includeFiles": "node_modules/kuromoji/dict/**"
-    }
-  }
-}

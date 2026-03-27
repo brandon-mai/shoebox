@@ -25,7 +25,9 @@ import basicSsl from '@vitejs/plugin-basic-ssl';
 export default defineConfig({
   site: 'https://vietbaomai.com',
   output: 'static',
-  adapter: vercel(),
+  adapter: vercel({
+    includeFiles: ['./node_modules/kuromoji/dict/**']
+  }),
   integrations: [mdx(), react(), sitemap(), icon(), mermaid()],
   vite: {
     plugins: [tailwindcss(), basicSsl()],
