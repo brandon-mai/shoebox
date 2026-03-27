@@ -21,11 +21,14 @@ import type { ExpressiveCodeTheme } from 'rehype-expressive-code'
 
 import tailwindcss from '@tailwindcss/vite'
 import basicSsl from '@vitejs/plugin-basic-ssl';
+import { fileURLToPath } from 'node:url';
 
 export default defineConfig({
   site: 'https://vietbaomai.com',
   output: 'static',
-  adapter: vercel(),
+  adapter: vercel({
+    includeFiles: [fileURLToPath(new URL('./node_modules/kuromoji/dict', import.meta.url))]
+  }),
   integrations: [mdx(), react(), sitemap(), icon(), mermaid()],
   vite: {
     plugins: [tailwindcss(), basicSsl()],
