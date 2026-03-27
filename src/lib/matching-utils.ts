@@ -42,6 +42,7 @@ export function rankTieBreaker(rank: number): number {
 
 export interface RadioMetadata {
   title: string;
+  titleRomaji?: string;
   artist: string;
   artistRomaji?: string;
   album: string;
@@ -51,6 +52,7 @@ export interface RadioMetadata {
 
 export interface SpotifyMetadata {
   name: string;
+  nameRomaji?: string;
   artist: string;
   artistRomaji?: string;
   album: string;
@@ -74,7 +76,12 @@ export function calculateMatchScore(radio: RadioMetadata, spotify: SpotifyMetada
   }
 
   // 2. Title Similarity (40% weight)
-  const titleScore = fuzzySimilarity(radio.title, spotify.name);
+  const originalTitleScore = fuzzySimilarity(radio.title, spotify.name);
+  let romajiTitleScore = 0;
+  if (radio.titleRomaji && spotify.nameRomaji) {
+    romajiTitleScore = fuzzySimilarity(radio.titleRomaji, spotify.nameRomaji);
+  }
+  const titleScore = Math.max(originalTitleScore, romajiTitleScore);
   
   // 3. Artist Similarity (30% weight)
   const originalArtistScore = fuzzySimilarity(radio.artist, spotify.artist);
@@ -111,7 +118,15 @@ export function calculateMatchScore(radio: RadioMetadata, spotify: SpotifyMetada
   
   // Calculate Base Score with boosted floor
   const baseScore = scores.reduce((total, s) => {
-    const finalScore = Math.max(s.val, boostFloor);
+    // Optimization: Don't boost title if it's a complete phonetic mismatch (< 0.2)
+    // This prevents short unrelated songs (like "Fps") from winning via rank tie-break
+    // when a longer phonetically similar song (like "Fiction Call") is available.
+    let finalScore = s.val;
+    if (s.key === 'title' && s.val < 0.20) {
+      // Keep low score
+    } else {
+      finalScore = Math.max(s.val, boostFloor);
+    }
     return total + (finalScore * s.weight);
   }, 0);
 

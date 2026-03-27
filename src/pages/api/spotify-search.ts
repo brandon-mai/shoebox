@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { searchTrack } from '@/lib/spotify-utils';
 import { calculateMatchScore } from '@/lib/matching-utils';
+import path from 'node:path';
 // @ts-ignore
 import Kuroshiro from 'kuroshiro';
 // @ts-ignore
@@ -18,19 +19,23 @@ async function getKuroshiro(): Promise<Kuroshiro | null> {
 
   kuroshiroInitializing = (async () => {
     try {
-      // @ts-ignore
-      const KuroshiroClass = typeof Kuroshiro === 'function' ? Kuroshiro : Kuroshiro.default || Kuroshiro;
-      // @ts-ignore
-      const AnalyzerClass = typeof KuromojiAnalyzer === 'function' ? KuromojiAnalyzer : KuromojiAnalyzer.default || KuromojiAnalyzer;
-      
+      // Vite SSR sometimes imports these as a default object rather than a constructor.
+      // We check for .default to maintain compatibility.
+      const KuroshiroClass = typeof Kuroshiro === 'function' ? Kuroshiro : (Kuroshiro as any).default || Kuroshiro;
+      const AnalyzerClass = typeof KuromojiAnalyzer === 'function' ? KuromojiAnalyzer : (KuromojiAnalyzer as any).default || KuromojiAnalyzer;
+
       const kuroshiro = new KuroshiroClass();
+      // Use absolute path to ensure Vercel finds the bundled dictionary
+      const dictPath = path.resolve('node_modules/kuromoji/dict');
+      
       await kuroshiro.init(new AnalyzerClass({
-        dictPath: "public/dict/"
+        dictPath: dictPath
       }));
+      
       kuroshiroInstance = kuroshiro;
       return kuroshiro;
     } catch (e) {
-      console.error("Failed to initialize kuroshiro", e);
+      console.error("Failed to initialize kuroshiro:", e);
       return null;
     }
   })();
@@ -96,27 +101,31 @@ export const GET: APIRoute = async ({ request, url }) => {
     const tAlbum = await translit(album);
     
     const radioData = (title && artist && duration) ? {
-      title, artist, artistRomaji: tArtist,
+      title, titleRomaji: tTitle, 
+      artist, artistRomaji: tArtist,
       album: album || '', albumRomaji: tAlbum,
       duration: parseFloat(duration)
     } : null;
 
     // 3. Execute Searches (Double-Query Strategy)
-    const searchPromises = [searchTrack(query)];
+    const searchWithMeta = async (q: string) => {
+      const tracks = await searchTrack(q);
+      return tracks.map(t => ({ ...t, queryUsed: q }));
+    };
+
+    const searchPromises = [searchWithMeta(query)];
     const debugInfo: any = { 
       kuroshiroStatus: kuroshiro ? 'Initialized' : 'Failed', 
       originalQuery: query, 
       hasJapanese: hasJp 
     };
 
-    if (hasJp && kuroshiro) {
-      const romajiQuery = `${tTitle} ${tArtist}`.trim();
-      // Only execute if transliteration actually changed the search string
-      if (romajiQuery.toLowerCase() !== query.toLowerCase()) {
-        searchPromises.push(searchTrack(romajiQuery));
-        debugInfo.romajiQuery = romajiQuery;
-        debugInfo.doubleQueryExecuted = true;
-      }
+    const romajiQuery = `${tTitle} ${tArtist}`.trim();
+    // Execute second query if we have a different search string (either via Kuroshiro or via frontend params)
+    if (romajiQuery.toLowerCase() !== query.toLowerCase()) {
+      searchPromises.push(searchWithMeta(romajiQuery));
+      debugInfo.romajiQuery = romajiQuery;
+      debugInfo.doubleQueryExecuted = true;
     }
     
     // 4. Merge Results & Deduplicate by URL
@@ -124,7 +133,13 @@ export const GET: APIRoute = async ({ request, url }) => {
     const uniqueTracks = new Map<string, any>();
     for (const arr of tracksArrays) {
       for (const t of arr) {
-        if (!uniqueTracks.has(t.url)) uniqueTracks.set(t.url, t);
+        if (uniqueTracks.has(t.url)) {
+          // If already found, mark as 'both'
+          const existing = uniqueTracks.get(t.url);
+          existing.queryUsed = 'both';
+        } else {
+          uniqueTracks.set(t.url, t);
+        }
       }
     }
     
@@ -136,6 +151,7 @@ export const GET: APIRoute = async ({ request, url }) => {
         // Transliterate Spotify metadata for language-agnostic comparison
         const spotifyData = {
           ...track,
+          nameRomaji: await translit(track.name),
           artistRomaji: await translit(track.artist),
           albumRomaji: await translit(track.album)
         };

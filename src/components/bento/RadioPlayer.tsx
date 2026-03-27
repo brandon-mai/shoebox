@@ -321,7 +321,7 @@ export function RadioPlayer({ className }: RadioPlayerProps) {
     if (!audioRef.current) return
     if (isPlaying) { audioRef.current.pause() } else {
       if (audioRef.current.paused) audioRef.current.load()
-      audioRef.current.volume = 0.4
+      audioRef.current.volume = 0.5
       audioRef.current.play().catch(() => {})
       if (song) {
         handleUpdateNowPlaying(song, spotifyTrack, useSpotifyMetadata)
