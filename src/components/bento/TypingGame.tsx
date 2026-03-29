@@ -5,17 +5,13 @@ import { useState, useEffect, useLayoutEffect, useCallback, useRef } from "react
 const EXCERPTS = [
   "The quick brown fox jumps over the lazy dog. This classic pangram contains every letter of the alphabet at least once. Typing exercises help us master keyboard layouts and improve our communication skills.",
   "Wife bought something on FB Marketplace but she's afraid she'll get kidnapped so she sends me to pick it up from a guy who's wife sent him because she's afraid to get kidnapped.",
-  "Glasses are really versatile. First, you can have glasses-wearing girls take them off and suddenly become beautiful, or have girls wearing glasses flashing those cute grins, or have girls stealing the protagonist's glasses and putting them on like, \"Haha, got your glasses!\" That's just way too cute!",
-  "Also, boys with glasses! I really like when their glasses have that suspicious looking gleam, and it's amazing how it can look really cool or just be a joke. I really like how it can fulfill all those abstract needs.",
-  "Being able to switch up the styles and colors of glasses based on your mood is a lot of fun too! It's actually so much fun! You have those half rim glasses, or the thick frame glasses, everything! It's like you're enjoying all these kinds of glasses at a buffet.",
-  "I really want Luna to try some on or Marine to try some on to replace her eyepatch. We really need glasses to become a thing in hololive and start selling them for HoloComi. Don't. You. Think. We. Really. Need. To. Officially. Give. Everyone. Glasses?",
-  "After working tirelessly for 10 years, Little John finally saved up enough money to buy this 0.001 square meters apartment in New York. He borrowed galvanized square steel and eco friendly woods from his aunt and proceed to transform the tiny room into fully functional house.",
-  "Teach a man to cook, and he can't fish. BUT teach a man to fish and he feeds himself and cooks. When you- Why teach man cook and he AHHHHHH! Teach man to cook and cook good not good. He die. Starve. Teach man fish, not starve. Cook and fish starve- not. If you've heard that before.",
-  "After years of listening to my music at 44.1kHz (like a peasant), I finally upgraded my setup to 96kHz hi def. The moment I pressed play, my houseplants stood up straighter. My dog made direct, knowing eye contact with me. Somewhere in the distance, I swear a Tibetan monk whispered, \“finally.\”",
-  "Honestly, I don't even listen to music anymore-I experience it on a cellular level. My fillings resonated during a bass drop yesterday. I'm pretty sure I astral projected.",
-  "Don't get me started on how embarrassing it must be for all the Muggles listening on Spotify. I walked past someone playing 320kbps MP3 and my ears folded themselves shut out of self-respect.",
-  "TL;DR: 96kHz isn't just audio. It's a lifestyle. It's a calling. It's a burden, really, being this sonically superior. Sometimes I wish I could go back, but then I remember I can hear dust motes landing on my speaker cones now.",
-  "Mori Calliope confirms \"Orpheus\" and \"Go-getters\" are were once they are did. They became the first ever to have the first as in the era of that when of a digital streaming and the media began. Congratulations!",
+  "Life becomes so beautiful when you realise that one step backwards is also the part of the dance.",
+  "The same boiling water that softens the potato hardens the egg. It's about what you're made of, not your circumstances.",
+  "When you're not sure, flip a coin because when the coin is in the air, you'll realize what option you're actually hoping for.",
+  "The forest was shrinking, but the trees kept voting for the Axe, for the Axe was clever and convinced them that because his handle was made of wood, he was one of them.",
+  "Anybody that goes against you without hearing your side of the story was already looking for a reason to be against you.",
+  "It's just a matter of perspective... If you ask the grass, the zebra is the monster and the lion is the protector.",
+  "The electric light did not come from the continuous improvement of candles."
 ];
 
 const getRandomExcerpt = () => {
@@ -416,7 +412,7 @@ export function TypingGame({ onGameFinish }: TypingGameProps) {
         <div className="relative">
           <div
             ref={textContainerRef}
-            className="text-[0.6rem] sm:text-xl leading-relaxed wrap-break-word select-none h-32 sm:h-auto overflow-clip"
+            className="text-[0.6rem] sm:text-[1.375rem] leading-relaxed wrap-break-word select-none h-32 sm:h-auto overflow-clip"
             role="textbox"
             aria-label="Text to type"
           >
