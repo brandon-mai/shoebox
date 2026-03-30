@@ -95,11 +95,15 @@ export function RadioPlayer({ className }: RadioPlayerProps) {
   const lastNpUpdateRef = useRef(0)
   const currentSongRef = useRef<Song | null>(null)
   const songStartTimeRef = useRef<number>(0)
+  const spotifyTrackRef = useRef<SpotifyTrack[] | null>(null)
+  const useSpotifyMetadataRef = useRef(useSpotifyMetadata)
 
   // Sync refs with state
   useEffect(() => { isPlayingRef.current = isPlaying }, [isPlaying])
   useEffect(() => { isScrobblingRef.current = isScrobbling }, [isScrobbling])
   useEffect(() => { lastfmSessionRef.current = lastfmSession }, [lastfmSession])
+  useEffect(() => { useSpotifyMetadataRef.current = useSpotifyMetadata }, [useSpotifyMetadata])
+  useEffect(() => { spotifyTrackRef.current = spotifyTrack }, [spotifyTrack])
 
   const getArtistNames = (s: Song | null) => s?.artists.map(a => a.name).join(', ') || 'Unknown Artist'
   const getArtistRomaji = (s: Song | null) => s?.artists.map(a => a.nameRomaji || a.name).join(', ') || ''
@@ -122,17 +126,17 @@ export function RadioPlayer({ className }: RadioPlayerProps) {
   }
 
   // Unified Scrobbling Helpers
-  const handleUpdateNowPlaying = (s: Song | null, st: SpotifyTrack[] | null, useSpotify: boolean) => {
+  const handleUpdateNowPlaying = (s: Song | null) => {
     if (!isScrobblingRef.current || !lastfmSessionRef.current) return
-    const meta = getScrobbleMetadata(s, st, useSpotify)
+    const meta = getScrobbleMetadata(s, spotifyTrackRef.current, useSpotifyMetadataRef.current)
     if (meta) {
       lastfm.updateNowPlaying(meta, lastfmSessionRef.current).catch(() => {})
     }
   }
 
-  const handleScrobble = (s: Song | null, st: SpotifyTrack[] | null, useSpotify: boolean, timestamp: number) => {
+  const handleScrobble = (s: Song | null, timestamp: number) => {
     if (!isScrobblingRef.current || !lastfmSessionRef.current || !s) return
-    const meta = getScrobbleMetadata(s, st, useSpotify)
+    const meta = getScrobbleMetadata(s, spotifyTrackRef.current, useSpotifyMetadataRef.current)
     if (meta) {
       console.log(`[Last.fm] Scrobbling: ${meta.track} by ${meta.artist}`)
       lastfm.scrobble({ ...meta, timestamp }, lastfmSessionRef.current).catch(err => console.error(err))
@@ -181,7 +185,7 @@ export function RadioPlayer({ className }: RadioPlayerProps) {
         if (lastNpUpdateRef.current >= NP_REFRESH_INTERVAL_SECONDS) {
           if (currentSongRef.current) {
             console.log('[Last.fm] Periodic NP update')
-            handleUpdateNowPlaying(currentSongRef.current, spotifyTrack, useSpotifyMetadata)
+            handleUpdateNowPlaying(currentSongRef.current)
           }
           lastNpUpdateRef.current = 0
         }
@@ -219,7 +223,7 @@ export function RadioPlayer({ className }: RadioPlayerProps) {
             if (currentSongRef.current && (currentSongRef.current.title !== newSong.title)) {
               const threshold = Math.min(MIN_SCROBBLE_TIME_MS, (currentSongRef.current.duration || 60) * 500)
               if (listenTimeMsRef.current >= threshold) {
-                handleScrobble(currentSongRef.current, spotifyTrack, useSpotifyMetadata, Math.floor(songStartTimeRef.current / 1000))
+                handleScrobble(currentSongRef.current, Math.floor(songStartTimeRef.current / 1000))
               }
             }
 
@@ -265,7 +269,11 @@ export function RadioPlayer({ className }: RadioPlayerProps) {
 
             // Immediate Now Playing (Radio metadata by default, updated on match)
             if (isPlayingRef.current) {
-              handleUpdateNowPlaying(newSong, null, false)
+              // Use Radio metadata for immediate NP update on new song
+              const meta = getScrobbleMetadata(newSong, null, false)
+              if (meta && lastfmSessionRef.current && isScrobblingRef.current) {
+                lastfm.updateNowPlaying(meta, lastfmSessionRef.current).catch(() => {})
+              }
             }
 
             // Update Media Session
@@ -304,7 +312,7 @@ export function RadioPlayer({ className }: RadioPlayerProps) {
     localStorage.setItem('is_scrobbling', String(newVal))
     // Update NP immediately if toggling ON
     if (newVal && song && isPlaying) {
-      handleUpdateNowPlaying(song, spotifyTrack, useSpotifyMetadata)
+      handleUpdateNowPlaying(song)
     }
   }
 
@@ -313,7 +321,7 @@ export function RadioPlayer({ className }: RadioPlayerProps) {
     setUseSpotifyMetadata(newVal)
     localStorage.setItem('use_spotify_metadata', String(newVal))
     if (song && isPlaying) {
-      handleUpdateNowPlaying(song, spotifyTrack, newVal)
+      handleUpdateNowPlaying(song)
     }
   }
 
@@ -324,7 +332,7 @@ export function RadioPlayer({ className }: RadioPlayerProps) {
       audioRef.current.volume = 0.5
       audioRef.current.play().catch(() => {})
       if (song) {
-        handleUpdateNowPlaying(song, spotifyTrack, useSpotifyMetadata)
+        handleUpdateNowPlaying(song)
       }
     }
     setIsPlaying(!isPlaying)
