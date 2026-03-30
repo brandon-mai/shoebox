@@ -250,29 +250,37 @@ export function RadioPlayer({ className }: RadioPlayerProps) {
               duration: (newSong.duration || 0).toString()
             })
 
-            setIsSearching(true)
-            fetch(`/api/spotify-search?${params.toString()}`)
-              .then(res => res.json())
-              .then(data => {
-                // if (data.debug) {
-                //   console.log('[Spotify Match Debug]', data.debug);
-                // }
-                const tracks = Array.isArray(data) ? data : (data.results || []);
-                if (tracks.length > 0) {
-                  setSpotifyTrack(tracks)
-                } else {
-                  setSpotifyTrack(null)
-                }
-              })
-              .catch(() => setSpotifyTrack(null))
-              .finally(() => setIsSearching(false))
-
-            // Immediate Now Playing (Radio metadata by default, updated on match)
+            // Conditional Now Playing Update (Single Update Strategy)
             if (isPlayingRef.current) {
-              // Use Radio metadata for immediate NP update on new song
-              const meta = getScrobbleMetadata(newSong, null, false)
-              if (meta && lastfmSessionRef.current && isScrobblingRef.current) {
-                lastfm.updateNowPlaying(meta, lastfmSessionRef.current).catch(() => {})
+              if (useSpotifyMetadataRef.current) {
+                // If Spotify metadata is ON, we wait for the fetch to resolve/fail
+                setIsSearching(true)
+                fetch(`/api/spotify-search?${params.toString()}`)
+                  .then(res => res.json())
+                  .then(data => {
+                    const tracks = Array.isArray(data) ? data : (data.results || []);
+                    if (tracks.length > 0) {
+                      setSpotifyTrack(tracks)
+                      spotifyTrackRef.current = tracks
+                    } else {
+                      setSpotifyTrack(null)
+                      spotifyTrackRef.current = null
+                    }
+                  })
+                  .catch(() => {
+                    setSpotifyTrack(null)
+                    spotifyTrackRef.current = null
+                  })
+                  .finally(() => {
+                    setIsSearching(false)
+                    // Update NP once now that search has concluded (either with match or fallback)
+                    handleUpdateNowPlaying(newSong)
+                  })
+              } else {
+                // If Spotify metadata is OFF, update immediately with Radio metadata
+                setSpotifyTrack(null)
+                spotifyTrackRef.current = null
+                handleUpdateNowPlaying(newSong)
               }
             }
 
