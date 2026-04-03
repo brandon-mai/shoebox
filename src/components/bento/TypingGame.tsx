@@ -3,7 +3,7 @@
 import { useState, useEffect, useLayoutEffect, useCallback, useRef } from "react";
 
 const EXCERPTS = [
-  "The quick brown fox jumps over the lazy dog. This classic pangram contains every letter of the alphabet at least once. Typing exercises help us master keyboard layouts and improve our communication skills.",
+  "The quick brown fox jumps over the lazy dog. This classic pangram contains every letter of the alphabet at least once.",
   "Wife bought something on FB Marketplace but she's afraid she'll get kidnapped so she sends me to pick it up from a guy who's wife sent him because she's afraid to get kidnapped.",
   "Life becomes so beautiful when you realise that one step backwards is also the part of the dance.",
   "The same boiling water that softens the potato hardens the egg. It's about what you're made of, not your circumstances.",
@@ -11,7 +11,9 @@ const EXCERPTS = [
   "The forest was shrinking, but the trees kept voting for the Axe, for the Axe was clever and convinced them that because his handle was made of wood, he was one of them.",
   "Anybody that goes against you without hearing your side of the story was already looking for a reason to be against you.",
   "It's just a matter of perspective... If you ask the grass, the zebra is the monster and the lion is the protector.",
-  "The electric light did not come from the continuous improvement of candles."
+  "The electric light did not come from the continuous improvement of candles.",
+  "Deep RL is popular because it's the only area in ML where it's socially acceptable to train on the test set.",
+  "Every researcher learns how to hate their area of study. The trick is that researchers will press on despite this, because they like the problems too much."
 ];
 
 const getRandomExcerpt = () => {
